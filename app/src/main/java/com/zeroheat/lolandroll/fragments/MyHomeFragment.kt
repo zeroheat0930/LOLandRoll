@@ -1,11 +1,13 @@
 package com.zeroheat.lolandroll.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.R
+import com.zeroheat.lolandroll.SearchSummonerActivity
 import com.zeroheat.lolandroll.databinding.FragmentMyHomeBinding
 
 class MyHomeFragment : BaseFragment() {
@@ -29,6 +31,11 @@ class MyHomeFragment : BaseFragment() {
 
 
     override fun setupEvents() {
+
+        binding.edtSummoner.setOnClickListener {
+            val myIntent = Intent(mContext,SearchSummonerActivity::class.java )
+            startActivity(myIntent)
+        }
 
     }
 

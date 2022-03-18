@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.zeroheat.lolandroll.api.APIList
+import com.zeroheat.lolandroll.api.ServerAPI2
 
 abstract class BaseFragment : Fragment() {
 
@@ -14,6 +15,9 @@ abstract class BaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         mContext = requireContext()
+
+        val retrofit = ServerAPI2.getRetrofit(mContext)
+        apiList = retrofit.create( APIList::class.java )
 
     }
 

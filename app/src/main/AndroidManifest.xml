@@ -13,6 +13,9 @@
         android:theme="@style/Theme.LOLandRoll"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SearchSummonerActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity
