@@ -2,11 +2,9 @@ package com.zeroheat.lolandroll.api
 
 import android.content.Context
 import com.google.gson.GsonBuilder
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 
 class ServerAPI2 {
 
@@ -20,18 +18,18 @@ class ServerAPI2 {
 
 //               Date 자료형으로 파싱 => String을 yyyy-MM-dd HH:mm:ss 으로 파싱해서 저장해야함. (고정된 양식으로 내려줌)
 
-                val gson = GsonBuilder()
-                    .setDateFormat("yyyy-MM-dd HH:mm:ss")  // 서버가 이런 양식으로 보내주는 String을
-                    .create()
+            val gson = GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")  // 서버가 이런 양식으로 보내주는 String을
+                .create()
 
-                val myClient = OkHttpClient.Builder()
-                    .build()
+            val myClient = OkHttpClient.Builder()
+                .build()
 
-                retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL) // 어느 서버를 기반으로 움직일건지.
-                    .addConverterFactory(GsonConverterFactory.create(gson)) // gson 라이브러리와 결합 + date 파싱 요령 첨부.
-                    .client(myClient) // 인터셉터를 부착해둔 클라이언트로 통신하도록
-                    .build()
+            retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL) // 어느 서버를 기반으로 움직일건지.
+                .addConverterFactory(GsonConverterFactory.create(gson)) // gson 라이브러리와 결합 + date 파싱 요령 첨부.
+                .client(myClient) // 인터셉터를 부착해둔 클라이언트로 통신하도록
+                .build()
 
 
             return retrofit!!
