@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "269601437005",
+    "project_id": "lolandroll-543b4",
+    "storage_bucket": "lolandroll-543b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269601437005:android:fdf70ace82db194745f304",
+        "android_client_info": {
+          "package_name": "com.zeroheat.lolandroll"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269601437005-p10tuimv3b4rbimur90vjjfgqthd7bqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zeroheat.lolandroll",
+            "certificate_hash": "1c2a771c69cc13c619d422ba7e19ba2b559474a2"
+          }
+        },
+        {
+          "client_id": "269601437005-o1sies7lnqu8pko1q9gteo3ic2b75jdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmQxXkEUeVXoqEJGB9dgFZFCNnA0slkos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269601437005-o1sies7lnqu8pko1q9gteo3ic2b75jdl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
