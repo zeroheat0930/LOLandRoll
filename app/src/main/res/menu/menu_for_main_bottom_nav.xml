@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myHome"
+        android:title="홈"
+        android:icon="@drawable/clock_icon"/>
+    <item
+        android:id="@+id/myHero"
+        android:title="챔피언"
+        android:icon="@drawable/profile_icon"/>
+    <item
+        android:id="@+id/myComu"
+        android:title="커뮤니티"
+        android:icon="@drawable/profile_icon"/>
+    <item
+        android:id="@+id/myDefault"
+        android:title="설정"
+        android:icon="@drawable/profile_icon"/>
+
+</menu>
