@@ -30,11 +30,20 @@
                 <EditText
                     android:id="@+id/edtSummoner"
                     android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="소환사 검색"
                     android:inputType="text"
                     android:singleLine="true" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/btnSummoner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="검색"/>
 
             </LinearLayout>
             <TextView

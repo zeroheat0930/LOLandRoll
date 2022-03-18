@@ -11,6 +11,6 @@ interface APIList {
     @GET("summoner/v4/summoners/by-name/{summonerName}")
     fun getsummoner(
         @Path("summonerName") summonerName : String,
-//        @Query("api_key") api_key : String
+        @Query("api_key") api_key : String
     ): Call<BasicResponse>
 }

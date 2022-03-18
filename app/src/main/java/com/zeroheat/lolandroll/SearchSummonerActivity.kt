@@ -1,7 +1,9 @@
 package com.zeroheat.lolandroll
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zeroheat.lolandroll.adapters.SearchSummonerRecyclerAdapter
@@ -19,6 +21,7 @@ class SearchSummonerActivity : BaseActivity() {
     val mSummonerList = ArrayList<Summoner>()
 
     lateinit var mSummonerAdapter : SearchSummonerRecyclerAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +46,35 @@ class SearchSummonerActivity : BaseActivity() {
         getMyplacesFromServer()
     }
 
+
     fun getMyplacesFromServer(){
+        var a = intent.getStringExtra("summoner")
+        Log.d("온거맞음?", a.toString())
 
-        apiList.getsummoner().enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+            apiList.getsummoner("zeroheat","RGAPI-afbd6c73-0460-434c-9cbd-6fa1682d3743").enqueue(object :Callback<BasicResponse>{
+                override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
-            }
+                    if(response.isSuccessful){
 
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                        val br = response.body()!!
 
-            }
+                        mSummonerList.clear()
 
-        })
+                        mSummonerList.addAll(br.data.places)
+
+                        mSummonerAdapter.notifyDataSetChanged()
+
+                    }
+
+                }
+
+                override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                }
+
+            })
+
     }
+
+
 }
