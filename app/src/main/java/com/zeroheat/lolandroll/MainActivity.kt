@@ -30,15 +30,23 @@ class MainActivity : BaseActivity() {
             when (it.itemId) {
                 R.id.myHome ->{
                     binding.mainViewPager2.currentItem = 0
+                    btnAdd.visibility = View.GONE
+                    txtTitle.visibility = View.GONE
                 }
                 R.id.myHero -> {
                     binding.mainViewPager2.currentItem = 1
+                    btnAdd.visibility = View.GONE
+                    txtTitle.visibility = View.GONE
                 }
                 R.id.myComu -> {
                     binding.mainViewPager2.currentItem = 2
+                    btnAdd.visibility = View.VISIBLE
+                    txtTitle.visibility = View.VISIBLE
                 }
                 R.id.myDefault -> {
                     binding.mainViewPager2.currentItem = 3
+                    btnAdd.visibility = View.GONE
+                    txtTitle.visibility = View.GONE
                 }
             }
 
