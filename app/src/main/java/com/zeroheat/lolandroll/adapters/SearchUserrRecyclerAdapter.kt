@@ -1,7 +1,6 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.datas.Summoner
 
-class SearchSummonerRecyclerAdapter (
+class SearchUserrRecyclerAdapter (
     val mContext : Context,
     val mList: List<Summoner>
-) : RecyclerView.Adapter<SearchSummonerRecyclerAdapter.MyViewHolder>(){
+) : RecyclerView.Adapter<SearchUserrRecyclerAdapter.MyViewHolder>(){
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
 

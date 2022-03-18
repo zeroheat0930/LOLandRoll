@@ -5,12 +5,50 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".SearchSummonerActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mySummonerRecyclerView"
+        <LinearLayout
+            android:id="@+id/btnSearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_icon"
+                app:tint="@color/searchcolor"
+                />
+            <EditText
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border"
+                android:id="@+id/edtSearch"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/search_icon"
+                android:drawableTint="@color/searchcolor"
+                android:drawablePadding="10dp"
+                android:hint="소환사 검색"
+                android:inputType="text"
+                android:singleLine="true" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="취소"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/buttonbluegray"/>
+
 
     </LinearLayout>
 </layout>

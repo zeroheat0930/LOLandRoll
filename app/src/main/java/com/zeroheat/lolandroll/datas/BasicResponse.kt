@@ -6,13 +6,8 @@ import java.io.Serializable
 // 레트로핏과 연계하면, 파싱이 자동 진행됨.
 
 class BasicResponse(
+    var code: Int,
+    var message: String,
     var data: DataResponse,
-    var accountId: String,
-    var profileIconId: Int,
-    var revisionDate: Long,
-    var name: String,
-    var puuid: String,
-    var id: String,
-    var summonerLevel: Long
 ) :Serializable{
 }

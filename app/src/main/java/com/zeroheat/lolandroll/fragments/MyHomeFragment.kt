@@ -37,16 +37,13 @@ class MyHomeFragment : BaseFragment() {
 
     override fun setupEvents() {
 
-        binding.btnSummoner.setOnClickListener {
-
-            val inputSummonername = binding.edtSummoner.text.toString()
-
+        binding.btnSearch.setOnClickListener {
              val myIntent = Intent(mContext,SearchSummonerActivity::class.java )
-            myIntent.putExtra("summoner", binding.edtSummoner.text.toString())
-            Log.d("온거맞음?", inputSummonername.toString())
             mContext.startActivity(myIntent)
-
-
+        }
+        binding.edtTp.setOnClickListener {
+            val myIntent = Intent(mContext,SearchSummonerActivity::class.java )
+            mContext.startActivity(myIntent)
         }
 
     }

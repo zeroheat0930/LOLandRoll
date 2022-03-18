@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="match_parent"
@@ -16,12 +17,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+
                 android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
@@ -32,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="설정"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="25sp"/>
 
             </LinearLayout>
@@ -41,6 +43,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
@@ -51,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="로그인"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -60,18 +63,20 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                     />
 
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
+                android:layout_height="10dp"
+                android:background="@color/teduri"/>
 
             <LinearLayout
                 android:id="@+id/btnThemeSetting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
@@ -82,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:text="기본 테마 설정"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -91,36 +96,32 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/teduri"/>
 
             <LinearLayout
                 android:id="@+id/btnBugReport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="버그제보 및 건의하기"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -129,7 +130,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
 
 
             </LinearLayout>
@@ -138,23 +140,18 @@
                 android:id="@+id/btnReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="리뷰쓰러 가기"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -163,35 +160,33 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
 
 
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/teduri"/>
+
+
             <LinearLayout
                 android:id="@+id/btnYakGuan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
+                android:padding="10dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="이용약관"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -200,7 +195,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
 
 
             </LinearLayout>
@@ -210,21 +206,16 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
                 android:paddingHorizontal="5dp"
+                android:padding="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="개인정보 보호방침"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/opggblackcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"
@@ -233,34 +224,30 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
 
 
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/teduri"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
+                android:padding="10dp"
                 android:paddingHorizontal="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="버전 6.0.6 (272)"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/searchcolor"
                     android:textSize="17sp"/>
                 <TextView
                     android:layout_width="0dp"

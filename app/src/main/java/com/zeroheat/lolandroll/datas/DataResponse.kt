@@ -1,7 +1,13 @@
 package com.zeroheat.lolandroll.datas
 
 class DataResponse (
-    val places: List<Summoner>
-        ){
+    var accountId: String,
+    var profileIconId: Int,
+    var revisionDate: Long,
+    var name: String,
+    var puuid: String,
+    var id: String,
+    var summonerLevel: Long
+){
 
 }

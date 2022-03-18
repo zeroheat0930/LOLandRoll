@@ -42,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity(){
         toolbar.setContentInsetsAbsolute(0,0)
 
 //        UI 요소들 실제 값 대입
-        txtTitle = defaultActionBar.customView.findViewById(R.id.txtTitle)
+        txtTitle = defaultActionBar.customView.findViewById(R.id.txtCumu)
         btnAdd = defaultActionBar.customView.findViewById(R.id.btnAdd)
     }
 }
