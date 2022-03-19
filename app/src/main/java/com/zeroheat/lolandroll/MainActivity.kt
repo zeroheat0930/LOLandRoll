@@ -2,14 +2,21 @@ package com.zeroheat.lolandroll
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.zeroheat.lolandroll.adapters.MainViewPager2Adapter
 import com.zeroheat.lolandroll.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
     lateinit var binding : ActivityMainBinding
+
+    val database = Firebase.database
+    val myRef = database.getReference("message")
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -19,7 +26,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-
 
  //        바텀 네비게이션의 메뉴 선택 > 뷰페이져의 페이지 이동
 
