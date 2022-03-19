@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LOLandRoll</string>
+
+    <string name="kakao_app_key">4b815a9d074d2ea9015de57ea89fe165</string>
 </resources>
