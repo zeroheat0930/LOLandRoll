@@ -43,7 +43,7 @@ class SearchSummonerActivity : BaseActivity() {
                     if (response.isSuccessful){
                         val br = response.body()!!
                         Log.d("성공", br.toString())
-                        val myIntent = Intent(mContext, ParcticActivity::class.java)
+                        val myIntent = Intent(mContext, Practice2Activity::class.java)
                         startActivity(myIntent)
                     }
                     else{
