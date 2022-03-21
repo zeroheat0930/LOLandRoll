@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.SummonerResponse
@@ -31,7 +32,6 @@ class SearchSummonerActivity : BaseActivity() {
 
                 handled = true
             }
-
             var inputSummonerName = binding.edtSearch.text.toString()
             apiList.getsummoner(
                 inputSummonerName,
@@ -43,10 +43,11 @@ class SearchSummonerActivity : BaseActivity() {
                     if (response.isSuccessful){
                         val br = response.body()!!
                         Log.d("성공", br.toString())
+                        val myIntent = Intent(mContext, ParcticActivity::class.java)
+                        startActivity(myIntent)
                     }
                     else{
-                        val jsonObj = JSONObject(response.errorBody()!!.toString())
-                        Log.d("에러응답",jsonObj.toString())
+                        Toast.makeText(mContext,"등록되지 않은 소환사 입니다.", Toast.LENGTH_LONG).show()
                     }
                 }
 
@@ -56,9 +57,6 @@ class SearchSummonerActivity : BaseActivity() {
             })
 
 
-
-            val myIntent = Intent(mContext, ParcticActivity::class.java)
-            startActivity(myIntent)
             handled
         }
     }

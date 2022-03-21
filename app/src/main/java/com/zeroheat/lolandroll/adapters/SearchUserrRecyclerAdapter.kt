@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zeroheat.lolandroll.R
-import com.zeroheat.lolandroll.datas.Summoner
+import com.zeroheat.lolandroll.datas.SummonerResponse
 
 class SearchUserrRecyclerAdapter (
     val mContext : Context,
-    val mList: List<Summoner>
+    val mList: List<SummonerResponse>
 ) : RecyclerView.Adapter<SearchUserrRecyclerAdapter.MyViewHolder>(){
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -20,7 +20,7 @@ class SearchUserrRecyclerAdapter (
         val txtStartPlaceName = view.findViewById<TextView>(R.id.txtStartPlaceName)
         val imgViewMap = view.findViewById<ImageView>(R.id.imgViewMap)
 
-        fun bind(data:Summoner){
+        fun bind(data:SummonerResponse){
 
             txtStartPlaceName.text = data.name
 

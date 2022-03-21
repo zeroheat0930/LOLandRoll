@@ -8,13 +8,13 @@ import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.FragmentUserBinding
-import com.zeroheat.lolandroll.datas.Summoner
+import com.zeroheat.lolandroll.datas.SummonerResponse
 
 class UserFragment : BaseFragment() {
 
     lateinit var binding: FragmentUserBinding
 
-    val mMyFriendsList = ArrayList<Summoner>()
+    val mMyFriendsList = ArrayList<SummonerResponse>()
 
     lateinit var mFriendAdapter : SearchUserrRecyclerAdapter
 
