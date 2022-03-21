@@ -6,10 +6,9 @@ import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.SummonerResponse
-import com.zeroheat.lolandroll.fragments.UserFragment
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +42,7 @@ class SearchSummonerActivity : BaseActivity() {
                     if (response.isSuccessful){
                         val br = response.body()!!
                         Log.d("성공", br.toString())
-                        val myIntent = Intent(mContext, Practice2Activity::class.java)
+                        val myIntent = Intent(mContext, ActivityParcticBinding::class.java)
                         startActivity(myIntent)
                     }
                     else{
