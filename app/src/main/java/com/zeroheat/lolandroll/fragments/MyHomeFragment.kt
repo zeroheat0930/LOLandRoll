@@ -2,7 +2,6 @@ package com.zeroheat.lolandroll.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,6 @@ import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.SearchSummonerActivity
 import com.zeroheat.lolandroll.databinding.FragmentMyHomeBinding
-import com.zeroheat.lolandroll.datas.BasicResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MyHomeFragment : BaseFragment() {
 

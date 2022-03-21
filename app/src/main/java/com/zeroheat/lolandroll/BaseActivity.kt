@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.zeroheat.lolandroll.api.APIList
+import com.zeroheat.lolandroll.api.ServerAPI2
 
 abstract class BaseActivity : AppCompatActivity(){
 
@@ -20,6 +21,9 @@ abstract class BaseActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
+
+        val retrofit = ServerAPI2.getRetrofit(mContext)
+        apiList = retrofit.create(APIList::class.java)
 
         supportActionBar?.let {
             setCustomActionBar()

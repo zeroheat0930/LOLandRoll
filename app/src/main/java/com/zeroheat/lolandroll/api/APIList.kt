@@ -1,6 +1,6 @@
 package com.zeroheat.lolandroll.api
 
-import com.zeroheat.lolandroll.datas.BasicResponse
+import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,5 +12,5 @@ interface APIList {
     fun getsummoner(
         @Path("summonerName") summonerName : String,
         @Query("api_key") api_key : String
-    ): Call<BasicResponse>
+    ): Call<SummonerResponse>
 }

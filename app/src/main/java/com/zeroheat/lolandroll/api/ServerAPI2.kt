@@ -14,7 +14,11 @@ class ServerAPI2 {
         private var retrofit: Retrofit? = null
         private var BASE_URL = "https://kr.api.riotgames.com/lol/"
 
+
+
         fun getRetrofit(context: Context): Retrofit {
+
+
 
 //               Date 자료형으로 파싱 => String을 yyyy-MM-dd HH:mm:ss 으로 파싱해서 저장해야함. (고정된 양식으로 내려줌)
 
