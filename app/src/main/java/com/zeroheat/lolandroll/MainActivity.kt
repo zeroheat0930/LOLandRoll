@@ -1,11 +1,13 @@
 package com.zeroheat.lolandroll
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.zeroheat.lolandroll.adapters.MainViewPager2Adapter
 import com.zeroheat.lolandroll.databinding.ActivityMainBinding
 
@@ -82,6 +84,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
 
         binding.mainViewPager2.adapter = MainViewPager2Adapter(this) // 변수 : Activity => 객체 : context로 대입 불가
 
