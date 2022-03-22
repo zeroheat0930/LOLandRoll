@@ -28,7 +28,7 @@ interface APIList {
     suspend fun getspectator(
         @Path("encryptedSummonerId") encryptedSummonerId : String,
         @Query("api_key") api_key : String
-    ): Response<SpectatorResponse>
+    ): Call<SpectatorResponse>
 
     @GET("/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}")
     fun getChampionMastery(

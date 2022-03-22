@@ -8,10 +8,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.SData
-import com.zeroheat.lolandroll.datas.SpellData
+import com.zeroheat.lolandroll.datas.SdataResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
-import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,15 +37,15 @@ class SearchSummonerActivity : BaseActivity() {
 
             var inputSummonerName = binding.edtSearch.text.toString()
 
-            apiList2.summoner().enqueue(object :Callback<SData>{
-                override fun onResponse(call: Call<SData>, response: Response<SData>) {
+            apiList2.summoner().enqueue(object :Callback<SdataResponse>{
+                override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
                     if(response.isSuccessful){
-                        var vr = response.body()!!
-                        Log.d("왜안나옴", vr.data.SummonerFlash.id)
+                        val vr = response.body()!!
+                        Log.d("왜안나옴", vr.toString())
                     }
                 }
 
-                override fun onFailure(call: Call<SData>, t: Throwable) {
+                override fun onFailure(call: Call<SdataResponse>, t: Throwable) {
 
                 }
             })
