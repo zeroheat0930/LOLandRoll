@@ -20,5 +20,5 @@ interface APIList {
     fun getLeague(
         @Path("encryptedSummonerId") encryptedSummonerId : String?,
         @Query("api_key") api_key: String
-    ): Call<LeagueResponse>
+    ): Call<List<LeagueResponse>>
 }

@@ -16,7 +16,7 @@ import retrofit2.Response
 class SearchSummonerActivity : BaseActivity() {
 
     lateinit var binding : ActivitySearchSummonerBinding
-    var messageCount = 0L //DB에 저장된 채팅 갯수를 담을 변수. Long타입으로 저장.
+    var messageCount = 1L //DB에 저장된 채팅 갯수를 담을 변수. Long타입으로 저장.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +49,19 @@ class SearchSummonerActivity : BaseActivity() {
                         apiList.getLeague(
                             br.id,
                             "RGAPI-c4fcd9c0-a53d-4e2c-a5a7-b292e56c5f7e"
-                        ).enqueue(object:Callback<LeagueResponse>{
+                        ).enqueue(object:Callback<List<LeagueResponse>>{
                             override fun onResponse(
-                                call: Call<LeagueResponse>,
-                                response: Response<LeagueResponse>
+                                call: Call<List<LeagueResponse>>,
+                                response: Response<List<LeagueResponse>>
                             ) {
+                                val list = response.body()!!
+                                Log.d("두번쨰", list[0].tier)
 //                                파이어베이스 데이터 넣기
-                                realtimeDB.getReference("League").child(messageCount.toString()).setValue(response.body()!!.getBsHashMap())
+                                realtimeDB.getReference("League").child(messageCount.toString()).setValue(list[0].getBsHashMap())
 
                             }
 
-                            override fun onFailure(call: Call<LeagueResponse>, t: Throwable) {
+                            override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
 
                             }
                         })
