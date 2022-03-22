@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.SData
 import com.zeroheat.lolandroll.datas.SpellData
 import com.zeroheat.lolandroll.datas.SummonerResponse
+import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,18 +39,15 @@ class SearchSummonerActivity : BaseActivity() {
 
             var inputSummonerName = binding.edtSearch.text.toString()
 
-            apiList2.summoner().enqueue(object:Callback<SpellData>{
-                override fun onResponse(call: Call<SpellData>, response: Response<SpellData>) {
-                    if (response.isSuccessful){
-                        val br = response.body()!!
-                        Log.d("스펠전송", br.toString())
-//                  파이어베이스 데이터 넣기
-                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(br)
-
+            apiList2.summoner().enqueue(object :Callback<SData>{
+                override fun onResponse(call: Call<SData>, response: Response<SData>) {
+                    if(response.isSuccessful){
+                        var vr = response.body()!!
+                        Log.d("왜안나옴", vr.data.SummonerFlash.id)
                     }
                 }
 
-                override fun onFailure(call: Call<SpellData>, t: Throwable) {
+                override fun onFailure(call: Call<SData>, t: Throwable) {
 
                 }
             })
@@ -112,6 +111,9 @@ class SearchSummonerActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+
+
 
     }
 
