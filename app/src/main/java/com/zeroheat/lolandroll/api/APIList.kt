@@ -1,6 +1,8 @@
 package com.zeroheat.lolandroll.api
 
+import com.zeroheat.lolandroll.datas.ChampionMasteryResponse
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.SpectatorResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -18,7 +20,20 @@ interface APIList {
 
     @GET("league/v4/entries/by-summoner/{encryptedSummonerId}")
     fun getLeague(
-        @Path("encryptedSummonerId") encryptedSummonerId : String?,
+        @Path("encryptedSummonerId") encryptedSummonerId : String,
         @Query("api_key") api_key: String
     ): Call<List<LeagueResponse>>
+
+    @GET("spectator/v4/active-games/by-summoner/{encryptedSummonerId}")
+    suspend fun getspectator(
+        @Path("encryptedSummonerId") encryptedSummonerId : String,
+        @Query("api_key") api_key : String
+    ): Response<SpectatorResponse>
+
+    @GET("/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}")
+    fun getChampionMastery(
+        @Path("encryptedSummonerId") encryptedSummonerId: String,
+        @Query("api_key") api_key: String
+    ): Call<List<ChampionMasteryResponse>>
+
 }

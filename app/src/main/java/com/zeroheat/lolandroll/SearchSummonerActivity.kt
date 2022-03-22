@@ -55,10 +55,11 @@ class SearchSummonerActivity : BaseActivity() {
                                 response: Response<List<LeagueResponse>>
                             ) {
                                 val list = response.body()!!
-                                Log.d("두번쨰", list[0].tier)
 //                                파이어베이스 데이터 넣기
-                                realtimeDB.getReference("League").child(messageCount.toString()).setValue(list[0].getBsHashMap())
-
+                                if(list.size != 0 ) {
+                                    realtimeDB.getReference("League").child(messageCount.toString())
+                                        .setValue(list[0].getBsHashMap())
+                                }
                             }
 
                             override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
