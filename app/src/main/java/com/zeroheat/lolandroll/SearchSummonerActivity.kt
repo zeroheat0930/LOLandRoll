@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
@@ -34,7 +33,7 @@ class SearchSummonerActivity : BaseActivity() {
             var inputSummonerName = binding.edtSearch.text.toString()
             apiList.getsummoner(
                 inputSummonerName,
-                "RGAPI-674f74e7-1c47-41ca-bdd5-6bad2a4ea7d9").enqueue(object :Callback<SummonerResponse>{
+                "RGAPI-c4fcd9c0-a53d-4e2c-a5a7-b292e56c5f7e").enqueue(object :Callback<SummonerResponse>{
                 override fun onResponse(
                     call: Call<SummonerResponse>,
                     response: Response<SummonerResponse>
@@ -42,7 +41,11 @@ class SearchSummonerActivity : BaseActivity() {
                     if (response.isSuccessful){
                         val br = response.body()!!
                         Log.d("성공", br.toString())
-                        val myIntent = Intent(mContext, ActivityParcticBinding::class.java)
+
+
+
+//                        성공하면 화면넘어감
+                        val myIntent = Intent(mContext, ParcticActivity::class.java)
                         startActivity(myIntent)
                     }
                     else{

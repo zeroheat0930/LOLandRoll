@@ -23,7 +23,7 @@ class ParcticActivity : BaseActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
         val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = manager // LayoutManager 등록
-        recyclerView.adapter = MyAdapter(dataList) // Adapter 등록
+//        recyclerView.adapter = MyAdapter(dataList) // Adapter 등록
 
     }
 

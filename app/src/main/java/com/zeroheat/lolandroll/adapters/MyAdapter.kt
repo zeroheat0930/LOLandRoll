@@ -42,13 +42,13 @@ class MyAdapter internal constructor(
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         if (viewHolder is CenterViewHolder) {
-            viewHolder.content.text = myDataList!![position].content
+//            viewHolder.content.text = myDataList!![position].content
         } else if (viewHolder is LeftViewHolder) {
-            viewHolder.name.text = myDataList!![position].name
-            viewHolder.content.text = myDataList!![position].content
+//            viewHolder.name.text = myDataList!![position].name
+//            viewHolder.content.text = myDataList!![position].content
         } else {
-            (viewHolder as RightViewHolder).name.text = myDataList!![position].name
-            viewHolder.content.text = myDataList!![position].content
+//            (viewHolder as RightViewHolder).name.text = myDataList!![position].name
+//            viewHolder.content.text = myDataList!![position].content
         }
     }
 
@@ -62,40 +62,40 @@ class MyAdapter internal constructor(
 
     inner class CenterViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
+//        var content: TextView
 
         init {
-            content = itemView.findViewById(R.id.content)
+//            content = itemView.findViewById(R.id.content)
         }
     }
 
     inner class LeftViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
-        var name: TextView
-        var image: ImageView
+//        var content: TextView
+//        var name: TextView
+//        var image: ImageView
 
         init {
-            content = itemView.findViewById(R.id.content)
-            name = itemView.findViewById(R.id.name)
-            image = itemView.findViewById(R.id.imageView)
+//            content = itemView.findViewById(R.id.content)
+//            name = itemView.findViewById(R.id.name)
+//            image = itemView.findViewById(R.id.imageView)
         }
     }
 
     inner class RightViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
-        var name: TextView
-        var image: ImageView
+//        var content: TextView
+//        var name: TextView
+//        var image: ImageView
 
         init {
-            content = itemView.findViewById(R.id.content)
-            name = itemView.findViewById(R.id.name)
-            image = itemView.findViewById(R.id.imageView)
+//            content = itemView.findViewById(R.id.content)
+//            name = itemView.findViewById(R.id.name)
+//            image = itemView.findViewById(R.id.imageView)
         }
     }
 
     init {
-        myDataList = dataList
+//        myDataList = dataList
     }
 }
