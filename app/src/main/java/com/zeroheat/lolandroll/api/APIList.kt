@@ -36,4 +36,5 @@ interface APIList {
         @Query("api_key") api_key: String
     ): Call<List<ChampionMasteryResponse>>
 
+
 }

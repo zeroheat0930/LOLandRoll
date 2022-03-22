@@ -6,11 +6,13 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ServerAPI2 {
+class ServerAPI1 {
+
+
     companion object {
 
         private var retrofit: Retrofit? = null
-        private var BASE_URL = "https://ddragon.leagueoflegends.com/cdn/"
+        private var BASE_URL = "https://kr.api.riotgames.com/lol/"
 
 
 
