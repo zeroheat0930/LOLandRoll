@@ -12,4 +12,16 @@ class SummonerResponse (
     var summonerLevel: Long
 ):Serializable{
 
+    fun getAsHashMap() : HashMap<String,String>{
+        return hashMapOf(
+        "accountId" to this.accountId,
+        "profileIconId" to this.profileIconId.toString(),
+        "revisionDate" to this.revisionDate.toString(),
+            "name" to this.name,
+            "puuid" to this.puuid,
+            "id" to this.id,
+            "summonerLevel" to this.summonerLevel.toString()
+        )
+    }
+
 }

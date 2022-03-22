@@ -15,6 +15,7 @@ import retrofit2.Response
 class SearchSummonerActivity : BaseActivity() {
 
     lateinit var binding : ActivitySearchSummonerBinding
+    var messageCount = 0L //DB에 저장된 채팅 갯수를 담을 변수. Long타입으로 저장.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,8 @@ class SearchSummonerActivity : BaseActivity() {
                     if (response.isSuccessful){
                         val br = response.body()!!
                         Log.d("성공", br.toString())
+
+                        realtimeDB.getReference("Summoner").child(messageCount.toString()).setValue(br.getAsHashMap())
 
 
 
