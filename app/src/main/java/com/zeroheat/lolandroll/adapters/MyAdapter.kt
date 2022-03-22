@@ -11,9 +11,19 @@ import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
 
-class MyAdapter internal constructor(dataList: ArrayList<DataItem>?) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var myDataList: ArrayList<DataItem>? = null
+class MyAdapter internal constructor(
+    val mContext : Context,
+    var myDataList: ArrayList<DataItem>
+
+
+
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+
+
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
         val context = parent.context

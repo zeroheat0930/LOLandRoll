@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.api.APIList
 import com.zeroheat.lolandroll.api.ServerAPI2
 
@@ -17,6 +18,9 @@ abstract class BaseActivity : AppCompatActivity(){
 
     lateinit var txtTitle: TextView
     lateinit var btnAdd: ImageView
+
+//    멤버변수로 RealtimeDb에 연결
+    val realtimeDB = FirebaseDatabase.getInstance("https://lolandroll-543b4-default-rtdb.firebaseio.com/")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

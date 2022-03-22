@@ -17,21 +17,21 @@ class SearchUserrRecyclerAdapter (
 
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        val txtStartPlaceName = view.findViewById<TextView>(R.id.txtStartPlaceName)
-        val imgViewMap = view.findViewById<ImageView>(R.id.imgViewMap)
+//        val txtStartPlaceName = view.findViewById<TextView>(R.id.txtStartPlaceName)
+//        val imgViewMap = view.findViewById<ImageView>(R.id.imgViewMap)
 
         fun bind(data:SummonerResponse){
 
-            txtStartPlaceName.text = data.name
+//            txtStartPlaceName.text = data.name
 
             }
 
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(mContext).inflate(R.layout.my_place_list_item,parent,false)
-        return MyViewHolder(view)
-    }
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+//        val view = LayoutInflater.from(mContext).inflate(R.layout.my_place_list_item,parent,false)
+//        return MyViewHolder(view)
+//    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = mList[position]
@@ -39,6 +39,11 @@ class SearchUserrRecyclerAdapter (
     }
 
     override fun getItemCount() = mList.size
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        TODO("Not yet implemented")
+    }
 
 }
 

@@ -25,13 +25,40 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="150dp"
+                        android:padding="10dp"
                         android:orientation="horizontal">
+                        <FrameLayout
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="start|bottom">
+                            <ImageView
+                                android:id="@+id/imgChamp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@mipmap/ic_launcher" />
+                            <TextView
+                                android:id="@+id/txtUserLevel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="373"
+                                android:layout_gravity="bottom|center"
+                                android:background="@color/black"
+                                android:textColor="@color/white"/>
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@mipmap/ic_launcher" />
+                        </FrameLayout>
+
+
+                        <TextView
+                            android:id="@+id/txtUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="밍뀨밍"
+                            android:layout_marginBottom="2dp"
+                            android:textSize="40sp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="bottom"/>
 
                     </LinearLayout>
 
@@ -41,12 +68,14 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnFO"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="전적 갱신" />
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnInGame"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
