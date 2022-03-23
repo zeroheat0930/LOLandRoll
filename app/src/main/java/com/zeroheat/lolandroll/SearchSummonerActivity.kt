@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.MatchResponse
 import com.zeroheat.lolandroll.datas.SdataResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
@@ -36,6 +40,8 @@ class SearchSummonerActivity : BaseActivity() {
 
 
             var inputSummonerName = binding.edtSearch.text.toString()
+
+
 
             apiList2.summoner().enqueue(object :Callback<SdataResponse>{
                 override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
@@ -80,6 +86,38 @@ class SearchSummonerActivity : BaseActivity() {
                                     realtimeDB.getReference("League").child(messageCount.toString())
                                         .setValue(list[0].getBsHashMap())
                                 }
+                                realtimeDB.getReference("Summoner").addValueEventListener(object :
+                                    ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val value = snapshot.children.last().child("puuid").value.toString()
+                                        apiList3.getMatch(
+                                            value,
+                                        "30",
+                                        "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63")
+                                            .enqueue(object :Callback<List<String>>{
+                                                override fun onResponse(
+                                                    call: Call<List<String>>,
+                                                    response: Response<List<String>>
+                                                ) {
+                                                    val a = response.body()!!
+                                                    realtimeDB.getReference("Match").child(messageCount.toString()).setValue(a)
+                                                }
+
+                                                override fun onFailure(
+                                                    call: Call<List<String>>,
+                                                    t: Throwable
+                                                ) {
+
+                                                }
+
+                                            })
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+
+                                    }
+                                })
+
                             }
 
                             override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {

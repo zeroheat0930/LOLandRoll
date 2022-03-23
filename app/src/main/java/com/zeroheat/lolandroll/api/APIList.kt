@@ -1,9 +1,6 @@
 package com.zeroheat.lolandroll.api
 
-import com.zeroheat.lolandroll.datas.ChampionMasteryResponse
-import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.SpectatorResponse
-import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.datas.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -35,6 +32,5 @@ interface APIList {
         @Path("encryptedSummonerId") encryptedSummonerId: String,
         @Query("api_key") api_key: String
     ): Call<List<ChampionMasteryResponse>>
-
 
 }

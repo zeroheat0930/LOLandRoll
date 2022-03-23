@@ -8,16 +8,14 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.database.FirebaseDatabase
-import com.zeroheat.lolandroll.api.API2List
-import com.zeroheat.lolandroll.api.APIList
-import com.zeroheat.lolandroll.api.ServerAPI1
-import com.zeroheat.lolandroll.api.ServerAPI2
+import com.zeroheat.lolandroll.api.*
 
 abstract class BaseActivity : AppCompatActivity(){
 
     lateinit var mContext: Context
     lateinit var apiList: APIList
     lateinit var apiList2: API2List
+    lateinit var apiList3: API3List
 
     lateinit var txtTitle: TextView
     lateinit var btnAdd: ImageView
@@ -34,6 +32,9 @@ abstract class BaseActivity : AppCompatActivity(){
 
         val retrofit2 = ServerAPI2.getRetrofit(mContext)
         apiList2 = retrofit2.create(API2List::class.java)
+
+        val retrofit3 = AsiaServerAPI.getRetrofit(mContext)
+        apiList3 = retrofit3.create(API3List::class.java)
 
         supportActionBar?.let {
             setCustomActionBar()
