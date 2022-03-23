@@ -18,7 +18,7 @@ class ChampionMasteryResponse (
         fun getDsHashMap() : HashMap<String,String>{
             return hashMapOf(
                 "championPointsUntilNextLevel" to this.championPointsUntilNextLevel.toString(),
-                "chestGranted" to this.summonerId,
+                "chestGranted" to this.chestGranted.toString(),
                 "championId" to this.championId.toString(),
                 "lastPlayTime" to this.lastPlayTime.toString(),
                 "championLevel" to this.championLevel.toString(),
