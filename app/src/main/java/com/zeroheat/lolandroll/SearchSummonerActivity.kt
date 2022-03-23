@@ -128,7 +128,7 @@ class SearchSummonerActivity : BaseActivity() {
                                                                     val b = response.body()!!
                                                                     Log.d("왜안되는건데", b.toString())
 //                                                                    디테일 데이터 파이어베이스에 등록
-//                                                                    realtimeDB.getReference("MatchDetail").child(messageCount.toString()).setValue(b)
+                                                                    realtimeDB.getReference("MatchDetail").child(messageCount.toString()).setValue(b.getMatchDetailHashMap())
                                                                 }
 
                                                                 override fun onFailure(

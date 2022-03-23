@@ -13,7 +13,7 @@ class matchMetaData(
         val hashMap = hashMapOf<String,Any>(
             "dataVersion" to this.dataVersion,
             "matchId" to this.matchId,
-            "participants" to this.participants[0]
+            "participants" to this.participants.toString()
 
         )
         return hashMap

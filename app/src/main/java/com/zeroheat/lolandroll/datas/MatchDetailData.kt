@@ -12,8 +12,8 @@ class MatchDetailData (
     fun getMatchDetailHashMap() : HashMap<String,Any>{
         val hashMap = hashMapOf<String,Any>(
 
-            "metadata" to  this.metadata.getmatchMetaHashMap(),
-            "matchInfo" to this.Info.getInfoHashMap()
+            "metadata" to this.metadata.getmatchMetaHashMap(),
+            "Info" to this.Info.getInfoHashMap()
 
         )
         return hashMap

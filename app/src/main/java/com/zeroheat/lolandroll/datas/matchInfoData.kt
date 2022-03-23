@@ -34,9 +34,9 @@ class matchInfoData(
             "gameId" to this.gameId.toString(),
             "gameMode" to this.gameMode,
             "mapId" to this.mapId.toString(),
-            "participants" to this.participants[0].getLongHashMap(),
+            "participants" to this.participants.list.getLongHashMap(),
             "queueId" to this.queueId.toString(),
-            "teams" to this.teams[0].getHashMap()
+            "teams" to this.teams.getHashMap()
 
 
 
