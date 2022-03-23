@@ -43,7 +43,7 @@ class SearchSummonerActivity : BaseActivity() {
                         val vr = response.body()!!
                         Log.d("왜안나옴", vr.toString())
 //                  파이어베이스 데이터 넣기
-                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(vr.data.SummonerBarrier.getHashMap())
+//                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(vr.data.getSpellHashMap())
 
                     }
                 }
@@ -55,7 +55,7 @@ class SearchSummonerActivity : BaseActivity() {
 
             apiList.getsummoner(
                 inputSummonerName,
-                "RGAPI-c4fcd9c0-a53d-4e2c-a5a7-b292e56c5f7e").enqueue(object :Callback<SummonerResponse>{
+                "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63").enqueue(object :Callback<SummonerResponse>{
                 override fun onResponse(
                     call: Call<SummonerResponse>,
                     response: Response<SummonerResponse>
@@ -68,7 +68,7 @@ class SearchSummonerActivity : BaseActivity() {
 //                  성공하면 두번째 api 데이터 전송
                         apiList.getLeague(
                             br.id,
-                            "RGAPI-c4fcd9c0-a53d-4e2c-a5a7-b292e56c5f7e"
+                            "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63"
                         ).enqueue(object:Callback<List<LeagueResponse>>{
                             override fun onResponse(
                                 call: Call<List<LeagueResponse>>,
