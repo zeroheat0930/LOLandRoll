@@ -1,9 +1,13 @@
 package com.zeroheat.lolandroll
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.zeroheat.lolandroll.adapters.MyAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.recyclerview.DataItem
@@ -15,6 +19,8 @@ class ParcticActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_parctic)
+        setupEvents()
+        setValues()
         getSupportActionBar()?.hide()
     }
 
@@ -27,7 +33,15 @@ class ParcticActivity : BaseActivity() {
 
     }
 
+
     override fun setValues() {
+        val ImageView: ImageView = findViewById(R.id.imgChamp)
+        Glide.with(mContext).load("https://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/5083.png")
+            .into(ImageView)
+
+        val TitleText: TextView = findViewById(R.id.txtUserName)
+
+
 
     }
     fun initializeData() {
