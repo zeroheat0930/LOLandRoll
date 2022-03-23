@@ -17,7 +17,7 @@ import retrofit2.Response
 class SearchSummonerActivity : BaseActivity() {
 
     lateinit var binding : ActivitySearchSummonerBinding
-    var messageCount = 3L //DB에 저장된 채팅 갯수를 담을 변수. Long타입으로 저장.
+    var messageCount = 0L //DB에 저장된 채팅 갯수를 담을 변수. Long타입으로 저장.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +93,7 @@ class SearchSummonerActivity : BaseActivity() {
 
 
 //                        성공하면 화면넘어감
-                        val myIntent = Intent(mContext, ParcticActivity::class.java)
+                        val myIntent = Intent(mContext, SearchResultActivity::class.java)
                         startActivity(myIntent)
                     }
                     else{

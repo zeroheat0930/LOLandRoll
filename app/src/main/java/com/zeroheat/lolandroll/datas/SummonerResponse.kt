@@ -1,5 +1,6 @@
 package com.zeroheat.lolandroll.datas
 
+import org.json.JSONObject
 import java.io.Serializable
 
 class SummonerResponse (

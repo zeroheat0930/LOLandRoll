@@ -38,12 +38,14 @@ class SearchUserrRecyclerAdapter (
         holder.bind(data)
     }
 
-    override fun getItemCount() = mList.size
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         TODO("Not yet implemented")
     }
+
+    override fun getItemCount() = mList.size
 
 }
 

@@ -17,7 +17,7 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".ParcticActivity"
+            android:name=".SearchResultActivity"
             android:exported="true" />
         <activity
             android:name=".SearchSummonerActivity"
