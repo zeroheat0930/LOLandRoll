@@ -22,17 +22,19 @@ class SpellData(
 
 ) : Serializable{
 
-//    fun getSpellHashMap() : HashMap<String,String>{
-//        return hashMapOf(
-//            "SummonerBarrier" to this.SummonerBarrier.toString(),
-//            "SummonerBoost" to this.SummonerBoost.toString(),
-//            "SummonerDot" to this.SummonerDot.toString(),
-//            "SummonerExhaust" to this.SummonerExhaust.toString(),
-//            "SummonerFlash" to this.SummonerFlash.toString(),
-//            "SummonerHaste" to this.SummonerHaste.toString(),
-//            "SummonerHeal" to this.SummonerHeal.toString(),
-//            "SummonerMana" to this.SummonerMana.toString(),
-//            "SummonerPoroRecall" to this.SummonerPoroRecall.toString()
-//        )
-//    }
+    fun getSpellHashMap() : HashMap<String,Any>{
+        val hashMap = hashMapOf<String,Any>(
+            "SummonerBarrier" to this.SummonerBarrier.getHashMap(),
+            "SummonerBoost" to this.SummonerBoost.getHashMap(),
+            "SummonerDot" to this.SummonerDot.getHashMap(),
+            "SummonerExhaust" to this.SummonerExhaust.getHashMap(),
+            "SummonerFlash" to this.SummonerFlash.getHashMap(),
+            "SummonerHaste" to this.SummonerHaste.getHashMap(),
+            "SummonerHeal" to this.SummonerHeal.getHashMap(),
+            "SummonerMana" to this.SummonerMana.getHashMap(),
+            "SummonerPoroRecall" to this.SummonerPoroRecall.getHashMap()
+
+        )
+        return hashMap
+    }
 }
