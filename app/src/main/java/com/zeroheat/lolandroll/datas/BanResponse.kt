@@ -2,7 +2,8 @@ package com.zeroheat.lolandroll.datas
 
 import java.io.Serializable
 
-class MatchResponse(
-
+class BanResponse(
+    var championId: Int,
+    var pickTurn: Int
 ):Serializable {
 }

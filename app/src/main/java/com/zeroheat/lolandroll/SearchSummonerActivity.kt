@@ -11,7 +11,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.MatchResponse
 import com.zeroheat.lolandroll.datas.SdataResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
@@ -42,7 +41,7 @@ class SearchSummonerActivity : BaseActivity() {
             var inputSummonerName = binding.edtSearch.text.toString()
 
 
-
+//          스펠정보 파이어베이스에 넣음.
             apiList2.summoner().enqueue(object :Callback<SdataResponse>{
                 override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
                     if(response.isSuccessful){
@@ -58,7 +57,7 @@ class SearchSummonerActivity : BaseActivity() {
 
                 }
             })
-
+//          소환사 이름대면 검색결과가 나옴.
             apiList.getsummoner(
                 inputSummonerName,
                 "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63").enqueue(object :Callback<SummonerResponse>{
@@ -71,7 +70,7 @@ class SearchSummonerActivity : BaseActivity() {
                         Log.d("성공", br.toString())
 //                  파이어베이스 데이터 넣기
                         realtimeDB.getReference("Summoner").child(messageCount.toString()).setValue(br.getAsHashMap())
-//                  성공하면 두번째 api 데이터 전송
+//                  성공하면 소환사 랭크 리그 정보를 넣어줌.
                         apiList.getLeague(
                             br.id,
                             "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63"
@@ -86,10 +85,12 @@ class SearchSummonerActivity : BaseActivity() {
                                     realtimeDB.getReference("League").child(messageCount.toString())
                                         .setValue(list[0].getBsHashMap())
                                 }
+//                                데이터베이스에 puuid를 꺼내옴.
                                 realtimeDB.getReference("Summoner").addValueEventListener(object :
                                     ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
                                         val value = snapshot.children.last().child("puuid").value.toString()
+//                                       puuid넣은 최근 30게임 전적이름 가져와서 데이터베이스 넣어줌.
                                         apiList3.getMatch(
                                             value,
                                         "30",
