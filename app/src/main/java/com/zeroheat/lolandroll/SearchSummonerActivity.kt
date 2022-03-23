@@ -42,6 +42,9 @@ class SearchSummonerActivity : BaseActivity() {
                     if(response.isSuccessful){
                         val vr = response.body()!!
                         Log.d("왜안나옴", vr.toString())
+//                  파이어베이스 데이터 넣기
+                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(vr.data.SummonerBarrier.getHashMap())
+
                     }
                 }
 
