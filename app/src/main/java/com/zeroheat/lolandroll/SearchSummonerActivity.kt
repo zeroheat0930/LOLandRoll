@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.datas.SdataResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
@@ -102,6 +103,47 @@ class SearchSummonerActivity : BaseActivity() {
                                                 ) {
                                                     val a = response.body()!!
                                                     realtimeDB.getReference("Match").child(messageCount.toString()).setValue(a)
+
+                                                    realtimeDB.getReference("Match").addValueEventListener(object : ValueEventListener{
+                                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                                            val value0 = snapshot.children.last().child("0").value.toString()
+                                                            val value1 = snapshot.children.last().child("1").value.toString()
+                                                            val value2 = snapshot.children.last().child("2").value.toString()
+                                                            val value3 = snapshot.children.last().child("3").value.toString()
+                                                            val value4 = snapshot.children.last().child("4").value.toString()
+                                                            val value5 = snapshot.children.last().child("5").value.toString()
+                                                            val value6 = snapshot.children.last().child("6").value.toString()
+                                                            val value7 = snapshot.children.last().child("7").value.toString()
+                                                            val value8 = snapshot.children.last().child("8").value.toString()
+                                                            val value9 = snapshot.children.last().child("9").value.toString()
+                                                            val value10 = snapshot.children.last().child("10").value.toString()
+                                                            // 이거는 좀 보류 해놧다가 물어봐야됨 내일.
+                                                            apiList3.getMatchDetail(
+                                                                value0,
+                                                                "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63").enqueue(object :Callback<MatchDetailData>{
+                                                                override fun onResponse(
+                                                                    call: Call<MatchDetailData>,
+                                                                    response: Response<MatchDetailData>
+                                                                ) {
+                                                                    val b = response.body()!!
+                                                                    Log.d("왜안되는건데", b.toString())
+//                                                                    디테일 데이터 파이어베이스에 등록
+//                                                                    realtimeDB.getReference("MatchDetail").child(messageCount.toString()).setValue(b)
+                                                                }
+
+                                                                override fun onFailure(
+                                                                    call: Call<MatchDetailData>,
+                                                                    t: Throwable
+                                                                ) {
+
+                                                                }
+                                                            })
+                                                        }
+
+                                                        override fun onCancelled(error: DatabaseError) {
+
+                                                        }
+                                                    })
                                                 }
 
                                                 override fun onFailure(
