@@ -16,14 +16,5 @@ class ChampionBasicData(
 
 ) : Serializable {
 
-    fun getHashMap() : HashMap<String,Any>{
-        val hashMap = hashMapOf<String,Any>(
-            "id" to this.id,
-            "key" to this.key,
-            "name" to this.name,
-            "title" to this.title,
-            "image" to this.image.getHashMap()
-        )
-        return hashMap
-    }
+
 }

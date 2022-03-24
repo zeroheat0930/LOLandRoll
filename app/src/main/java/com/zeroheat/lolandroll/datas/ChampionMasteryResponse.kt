@@ -15,17 +15,5 @@ class ChampionMasteryResponse (
 
     ) :Serializable{
 
-        fun getDsHashMap() : HashMap<String,String>{
-            return hashMapOf(
-                "championPointsUntilNextLevel" to this.championPointsUntilNextLevel.toString(),
-                "chestGranted" to this.chestGranted.toString(),
-                "championId" to this.championId.toString(),
-                "lastPlayTime" to this.lastPlayTime.toString(),
-                "championLevel" to this.championLevel.toString(),
-                "summonerId" to this.summonerId,
-                "championPoints" to this.championPoints.toString(),
-                "championPointsSinceLastLevel" to this.championPointsSinceLastLevel.toString(),
-                "tokensEarned" to this.tokensEarned.toString()
-            )
-        }
+
     }

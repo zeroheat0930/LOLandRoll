@@ -20,17 +20,5 @@ class LeagueResponse(
 
 ) :Serializable{
 
-    fun getBsHashMap() : HashMap<String,String>{
-        return hashMapOf(
-            "leagueId" to this.leagueId,
-            "summonerId" to this.summonerId,
-            "summonerName" to this.summonerName,
-            "queueType" to this.queueType,
-            "tier" to this.tier,
-            "rank" to this.rank,
-            "leaguePoints" to this.leaguePoints.toString(),
-            "wins" to this.wins.toString(),
-            "losses" to this.losses.toString()
-        )
-    }
+
 }

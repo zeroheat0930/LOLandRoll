@@ -70,7 +70,7 @@ class SearchSummonerActivity : BaseActivity() {
                         val br = response.body()!!
                         Log.d("성공", br.toString())
 //                  파이어베이스 데이터 넣기
-                        realtimeDB.getReference("Summoner").child(messageCount.toString()).setValue(br.getAsHashMap())
+                        realtimeDB.getReference("Summoner").child(messageCount.toString()).setValue(br)
 //                  성공하면 소환사 랭크 리그 정보를 넣어줌.
                         apiList.getLeague(
                             br.id,
@@ -84,7 +84,7 @@ class SearchSummonerActivity : BaseActivity() {
 //                                파이어베이스 데이터 넣기
                                 if(list.size != 0 ) {
                                     realtimeDB.getReference("League").child(messageCount.toString())
-                                        .setValue(list[0].getBsHashMap())
+                                        .setValue(list[0])
                                 }
 //                                데이터베이스에 puuid를 꺼내옴.
                                 realtimeDB.getReference("Summoner").addValueEventListener(object :
@@ -128,7 +128,7 @@ class SearchSummonerActivity : BaseActivity() {
                                                                     val b = response.body()!!
                                                                     Log.d("왜안되는건데", b.toString())
 //                                                                    디테일 데이터 파이어베이스에 등록
-                                                                    realtimeDB.getReference("MatchDetail").child(messageCount.toString()).setValue(b.getMatchDetailHashMap())
+                                                                    realtimeDB.getReference("MatchDetail").child(messageCount.toString()).setValue(b)
                                                                 }
 
                                                                 override fun onFailure(

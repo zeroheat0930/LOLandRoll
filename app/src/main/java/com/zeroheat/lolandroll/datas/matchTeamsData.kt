@@ -11,15 +11,6 @@ class matchTeamsData(
 
 
 ):Serializable {
-    fun getHashMap() : HashMap<String,Any>{
-        val hashMap = hashMapOf<String,Any>(
-            "bans" to this.bans[0].getListHashMap(),
-            "objectives" to this.objectives.getHashMap(),
-            "teamId" to this.teamId.toString(),
-            "win" to this.win.toString()
 
-        )
-        return hashMap
-    }
 
 }
