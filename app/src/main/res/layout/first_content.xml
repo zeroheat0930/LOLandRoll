@@ -7,6 +7,7 @@
     android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="S2021 PLATINUM 4" />

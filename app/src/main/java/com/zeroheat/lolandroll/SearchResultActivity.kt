@@ -1,29 +1,24 @@
 package com.zeroheat.lolandroll
 
-import android.icu.text.CaseMap
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import com.zeroheat.lolandroll.adapters.MyAdapter
+import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
-import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
 
 class SearchResultActivity : BaseActivity() {
     lateinit var binding : ActivityParcticBinding
-    private var dataList: ArrayList<DataItem>? = null
-    var mChatList = ArrayList<SummonerResponse>()
+    var mList = ArrayList<DataItem>()
+    lateinit var  mAdapter: SearchUserrRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +29,17 @@ class SearchResultActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-        initializeData()
-        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
-        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = manager // LayoutManager 등록
-//        recyclerView.adapter = MyAdapter(dataList) // Adapter 등록
+
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mList)
+        binding.threeRecycle.adapter = mAdapter
+        binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
+
+
+//        initializeData()
+//        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
+//        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+//        recyclerView.layoutManager = manager
+//        recyclerView.adapter = SearchUserrRecyclerAdapter(dataList)
 
     }
 
@@ -74,22 +75,22 @@ class SearchResultActivity : BaseActivity() {
 
     }
     fun initializeData() {
-        dataList = java.util.ArrayList()
-        dataList!!.add(DataItem("사용자1님이 입장하셨습니다.", null, code.ViewType.CENTER_CONTENT))
-        dataList!!.add(DataItem("사용자2님이 입장하셨습니다.", null, code.ViewType.CENTER_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.LEFT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
-        dataList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.RIGHT_CONTENT))
+        mList = java.util.ArrayList()
+        mList!!.add(DataItem(null, "2021 Master1", code.ViewType.multi_type1))
+        mList!!.add(DataItem(null, "2020 Master1", code.ViewType.multi_type1))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type2))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
     }
 }

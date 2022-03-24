@@ -8,36 +8,59 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zeroheat.lolandroll.R
-import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
 
 class SearchUserrRecyclerAdapter (
     val mContext : Context,
-    val mList: List<SummonerResponse>
+    val mList: List<DataItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     inner class FirstViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-//        var content: TextView
+        var content: TextView
 
         init {
-//            content = itemView.findViewById(R.id.content)
+            content = itemView.findViewById(R.id.btnRank)
         }
     }
     inner class SecondViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-//        var content: TextView
+        var content: TextView
+        var image : ImageView
 
         init {
-//            content = itemView.findViewById(R.id.content)
+            content = itemView.findViewById(R.id.btnRankValue)
+            content = itemView.findViewById(R.id.txtRankNow)
+            content = itemView.findViewById(R.id.txtLp)
+            content = itemView.findViewById(R.id.txtWinLoss)
+            image = itemView.findViewById(R.id.imgRank)
         }
     }
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-//        var content: TextView
+        var content: TextView
+        var image: ImageView
 
         init {
-//            content = itemView.findViewById(R.id.content)
+            content = itemView.findViewById(R.id.txtWin)
+            content = itemView.findViewById(R.id.txtMatchTime)
+            content = itemView.findViewById(R.id.txtKda)
+            content = itemView.findViewById(R.id.txtKillPer)
+            content = itemView.findViewById(R.id.txtGameMode)
+            content = itemView.findViewById(R.id.txtGameDate)
+            image = itemView.findViewById(R.id.imgUsedChamp)
+            image = itemView.findViewById(R.id.imgD)
+            image = itemView.findViewById(R.id.imgF)
+            image = itemView.findViewById(R.id.imgUsedRun1)
+            image = itemView.findViewById(R.id.imgUsedRun2)
+            image = itemView.findViewById(R.id.imgItem1)
+            image = itemView.findViewById(R.id.imgItem2)
+            image = itemView.findViewById(R.id.imgItem3)
+            image = itemView.findViewById(R.id.imgItem4)
+            image = itemView.findViewById(R.id.imgItem5)
+            image = itemView.findViewById(R.id.imgItem6)
+            image = itemView.findViewById(R.id.imgItemWard)
         }
     }
 
@@ -46,7 +69,7 @@ class SearchUserrRecyclerAdapter (
 //        val txtStartPlaceName = view.findViewById<TextView>(R.id.txtStartPlaceName)
 //        val imgViewMap = view.findViewById<ImageView>(R.id.imgViewMap)
 
-        fun bind(data:SummonerResponse){
+        fun bind(data:DataItem){
 
 //            txtStartPlaceName.text = data.name
 
@@ -57,10 +80,10 @@ class SearchUserrRecyclerAdapter (
         val view: View
         val context = mContext
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        return if (viewType == code.ViewType.CENTER_CONTENT) {
+        return if (viewType == code.ViewType.multi_type1) {
             view = inflater.inflate(R.layout.first_content, parent, false)
             FirstViewHolder(view)
-        } else if (viewType == code.ViewType.LEFT_CONTENT) {
+        } else if (viewType == code.ViewType.multi_type2) {
             view = inflater.inflate(R.layout.second_content, parent, false)
             SecondViewHolder(view)
         } else {
