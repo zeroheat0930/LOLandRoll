@@ -209,7 +209,6 @@ var 6695 : ItemDetailData,
 var 6696 : ItemDetailData,
 var 8001 : ItemDetailData,
 var 8020 : ItemDetailData,
-){}
 
 
         ):Serializable{
