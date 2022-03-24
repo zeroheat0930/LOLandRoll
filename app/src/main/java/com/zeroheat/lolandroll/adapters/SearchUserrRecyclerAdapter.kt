@@ -86,6 +86,7 @@ class SearchUserrRecyclerAdapter (
             view = inflater.inflate(R.layout.third_content, parent, false)
             ThirdViewHolder(view)
         }
+dkslfdsjklfadjslf시발어릮
 
     }
 
