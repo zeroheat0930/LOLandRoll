@@ -8,8 +8,8 @@ class ItemResponse (
     var version : String,
 //    var basic : ItemBasicData,
     var data : ItemData,
-    var groups : List<ItemGroupData>,
-    var tree : List<ItemTreeData>
+//    var groups : List<ItemGroupData>,
+//    var tree : List<ItemTreeData>
 
 ) :Serializable{
 }

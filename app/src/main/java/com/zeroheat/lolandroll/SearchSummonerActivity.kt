@@ -37,40 +37,63 @@ class SearchSummonerActivity : BaseActivity() {
 
 
             var inputSummonerName = binding.edtSearch.text.toString()
+//              정보 다 넣었으니 한동안 안쓸꺼임!!
+////            아이템 정보 파이어베이스 넣기
+//            apiList2.item().enqueue(object :Callback<ItemResponse>{
+//                override fun onResponse(
+//                    call: Call<ItemResponse>,
+//                    response: Response<ItemResponse>
+//                ) {
+//                    if (response.isSuccessful){
+//                        val vr = response.body()!!
+////                  파이어베이스 데이터 넣기
+//                        realtimeDB.getReference("Item").child(messageCount.toString()).setValue(vr.data)
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ItemResponse>, t: Throwable) {
+//
+//                }
+//            })
+//
+////           챔피언 정보 파이어베이스 넣기
+//            apiList2.champion().enqueue(object :Callback<CdataResponse>{
+//                override fun onResponse(
+//                    call: Call<CdataResponse>,
+//                    response: Response<CdataResponse>
+//                ) {
+//                    if (response.isSuccessful){
+//                        val vr = response.body()!!
+////                  파이어베이스 데이터 넣기
+//                        realtimeDB.getReference("Champion").child(messageCount.toString()).setValue(vr.data)
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<CdataResponse>, t: Throwable) {
+//
+//                }
+//            })
+//
+////          스펠정보 파이어베이스에 넣음.
+//            apiList2.summoner().enqueue(object :Callback<SdataResponse>{
+//                override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
+//                    if(response.isSuccessful){
+//                        val vr = response.body()!!
+//                        Log.d("왜안나옴", vr.toString())
+////                  파이어베이스 데이터 넣기
+//                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(vr.data)
+//
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<SdataResponse>, t: Throwable) {
+//
+//                }
+//            })
 
-            apiList2.champion().enqueue(object :Callback<CdataResponse>{
-                override fun onResponse(
-                    call: Call<CdataResponse>,
-                    response: Response<CdataResponse>
-                ) {
-                    if (response.isSuccessful){
-                        val vr = response.body()!!
-//                  파이어베이스 데이터 넣기
-                        realtimeDB.getReference("Champion").child(messageCount.toString()).setValue(vr.data)
-                    }
-                }
 
-                override fun onFailure(call: Call<CdataResponse>, t: Throwable) {
 
-                }
-            })
 
-//          스펠정보 파이어베이스에 넣음.
-            apiList2.summoner().enqueue(object :Callback<SdataResponse>{
-                override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
-                    if(response.isSuccessful){
-                        val vr = response.body()!!
-                        Log.d("왜안나옴", vr.toString())
-//                  파이어베이스 데이터 넣기
-//                        realtimeDB.getReference("Spell").child(messageCount.toString()).setValue(vr.data.getSpellHashMap())
-
-                    }
-                }
-
-                override fun onFailure(call: Call<SdataResponse>, t: Throwable) {
-
-                }
-            })
 //          소환사 이름대면 검색결과가 나옴.
             apiList.getsummoner(
                 inputSummonerName,
