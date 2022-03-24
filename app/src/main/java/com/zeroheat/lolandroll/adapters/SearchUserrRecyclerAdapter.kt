@@ -95,6 +95,6 @@ class SearchUserrRecyclerAdapter (
         val data = mList[position]
 
     }
-뭐가문젠데 돋인ㅇ님러ㅣㅏㅇ러ㅣㅏ;ㅁㅇㄴ러ㅏㅁㅇㄴ
+
 }
 
