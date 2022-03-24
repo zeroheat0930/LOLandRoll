@@ -64,18 +64,17 @@ class SearchUserrRecyclerAdapter (
         }
     }
 
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
-
-//        val txtStartPlaceName = view.findViewById<TextView>(R.id.txtStartPlaceName)
-//        val imgViewMap = view.findViewById<ImageView>(R.id.imgViewMap)
-
-        fun bind(data:DataItem){
-
-//            txtStartPlaceName.text = data.name
-
-            }
-
+    override fun getItemViewType(position: Int): Int {
+        return when(position){
+            0-> code.ViewType.multi_type1
+            1-> code.ViewType.multi_type2
+            else->code.ViewType.multi_type3
         }
+    }
+
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
         val context = mContext

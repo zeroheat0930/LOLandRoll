@@ -35,7 +35,9 @@ class SearchResultActivity : BaseActivity() {
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
 
-//        initializeData()
+        initializeData()
+        mAdapter.notifyDataSetChanged()
+
 //        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
 //        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 //        recyclerView.layoutManager = manager
