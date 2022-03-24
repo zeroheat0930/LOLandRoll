@@ -10,10 +10,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
-import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.MatchDetailData
-import com.zeroheat.lolandroll.datas.SdataResponse
-import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.datas.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,6 +38,22 @@ class SearchSummonerActivity : BaseActivity() {
 
             var inputSummonerName = binding.edtSearch.text.toString()
 
+            apiList2.champion().enqueue(object :Callback<CdataResponse>{
+                override fun onResponse(
+                    call: Call<CdataResponse>,
+                    response: Response<CdataResponse>
+                ) {
+                    if (response.isSuccessful){
+                        val vr = response.body()!!
+//                  파이어베이스 데이터 넣기
+                        realtimeDB.getReference("Champion").child(messageCount.toString()).setValue(vr.data)
+                    }
+                }
+
+                override fun onFailure(call: Call<CdataResponse>, t: Throwable) {
+
+                }
+            })
 
 //          스펠정보 파이어베이스에 넣음.
             apiList2.summoner().enqueue(object :Callback<SdataResponse>{
@@ -61,7 +74,7 @@ class SearchSummonerActivity : BaseActivity() {
 //          소환사 이름대면 검색결과가 나옴.
             apiList.getsummoner(
                 inputSummonerName,
-                "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63").enqueue(object :Callback<SummonerResponse>{
+                "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460").enqueue(object :Callback<SummonerResponse>{
                 override fun onResponse(
                     call: Call<SummonerResponse>,
                     response: Response<SummonerResponse>
@@ -74,7 +87,7 @@ class SearchSummonerActivity : BaseActivity() {
 //                  성공하면 소환사 랭크 리그 정보를 넣어줌.
                         apiList.getLeague(
                             br.id,
-                            "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63"
+                            "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460"
                         ).enqueue(object:Callback<List<LeagueResponse>>{
                             override fun onResponse(
                                 call: Call<List<LeagueResponse>>,
@@ -95,7 +108,7 @@ class SearchSummonerActivity : BaseActivity() {
                                         apiList3.getMatch(
                                             value,
                                         "30",
-                                        "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63")
+                                        "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460")
                                             .enqueue(object :Callback<List<String>>{
                                                 override fun onResponse(
                                                     call: Call<List<String>>,
