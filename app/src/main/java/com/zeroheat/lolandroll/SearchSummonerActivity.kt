@@ -156,7 +156,7 @@ class SearchSummonerActivity : BaseActivity() {
                                                             // 이거는 좀 보류 해놧다가 물어봐야됨 내일.
                                                             apiList3.getMatchDetail(
                                                                 value0,
-                                                                "RGAPI-2eeee2b7-fd7f-447e-b5a4-90e34316dd63").enqueue(object :Callback<MatchDetailData>{
+                                                                "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460").enqueue(object :Callback<MatchDetailData>{
                                                                 override fun onResponse(
                                                                     call: Call<MatchDetailData>,
                                                                     response: Response<MatchDetailData>
