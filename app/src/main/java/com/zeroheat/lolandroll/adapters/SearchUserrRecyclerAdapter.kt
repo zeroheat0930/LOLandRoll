@@ -62,18 +62,15 @@ class SearchUserrRecyclerAdapter (
             image = itemView.findViewById(R.id.imgItem6)
             image = itemView.findViewById(R.id.imgItemWard)
         }
-    }
 
-    override fun getItemViewType(position: Int): Int {
-        return when(position){
-            0-> code.ViewType.multi_type1
-            1-> code.ViewType.multi_type2
-            else->code.ViewType.multi_type3
+    }
+        override fun getItemViewType(position: Int): Int {
+            return when (position) {
+                0 -> code.ViewType.multi_type1
+                1 -> code.ViewType.multi_type2
+                else -> code.ViewType.multi_type3
+            }
         }
-    }
-
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
@@ -91,11 +88,6 @@ class SearchUserrRecyclerAdapter (
         }
 
     }
-
-
-
-
-
 
 
     override fun getItemCount() = mList.size
