@@ -86,7 +86,6 @@ class SearchUserrRecyclerAdapter (
             view = inflater.inflate(R.layout.third_content, parent, false)
             ThirdViewHolder(view)
         }
-dkslfdsjklfadjslf시발어릮
 
     }
 
@@ -96,6 +95,6 @@ dkslfdsjklfadjslf시발어릮
         val data = mList[position]
 
     }
-
+뭐가문젠데 돋인ㅇ님러ㅣㅏㅇ러ㅣㅏ;ㅁㅇㄴ러ㅏㅁㅇㄴ
 }
 
