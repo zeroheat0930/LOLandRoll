@@ -36,7 +36,7 @@ class SearchResultActivity : BaseActivity() {
 
 
         initializeData()
-        mAdapter.notifyDataSetChanged()
+
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
 //        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -77,7 +77,6 @@ class SearchResultActivity : BaseActivity() {
 
     }
     fun initializeData() {
-        mList = java.util.ArrayList()
         mList!!.add(DataItem(null, "2021 Master1", code.ViewType.multi_type1))
         mList!!.add(DataItem(null, "2020 Master1", code.ViewType.multi_type1))
         mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
@@ -94,5 +93,7 @@ class SearchResultActivity : BaseActivity() {
         mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
         mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
         mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
+
+        mAdapter.notifyDataSetChanged()
     }
 }
