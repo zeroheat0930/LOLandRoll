@@ -62,7 +62,7 @@ class SearchUserrRecyclerAdapter (
             image = itemView.findViewById(R.id.imgItem6)
             image = itemView.findViewById(R.id.imgItemWard)
         }
-
+//아침커밋
     }
         override fun getItemViewType(position: Int): Int {
             return when (position) {
