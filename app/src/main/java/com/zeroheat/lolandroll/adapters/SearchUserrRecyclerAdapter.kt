@@ -1,6 +1,7 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zeroheat.lolandroll.R
+import com.zeroheat.lolandroll.api.API3List
+import com.zeroheat.lolandroll.api.AsiaServerAPI
+import com.zeroheat.lolandroll.api.ServerAPI1
+import com.zeroheat.lolandroll.api.ServerAPI2
+import com.zeroheat.lolandroll.datas.ChampionBasicData
+import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchUserrRecyclerAdapter (
     val mContext : Context,
-    val mList: List<DataItem>
+    val mMatchIdList: List<String>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     inner class FirstViewHolder internal constructor(itemView: View) :
@@ -23,6 +33,7 @@ class SearchUserrRecyclerAdapter (
         init {
             content = itemView.findViewById(R.id.btnRank)
         }
+
     }
     inner class SecondViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -36,6 +47,11 @@ class SearchUserrRecyclerAdapter (
             content = itemView.findViewById(R.id.txtWinLoss)
             image = itemView.findViewById(R.id.imgRank)
         }
+
+        fun bind(data: DataItem) {
+
+        }
+
     }
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -65,7 +81,10 @@ class SearchUserrRecyclerAdapter (
 //아침커밋
     }
         override fun getItemViewType(position: Int): Int {
-            return when (position) {
+
+//            홀수줄 : 데이터목록
+//            짝수줄 : 챔프목록
+            return when(position) {
                 0 -> code.ViewType.multi_type1
                 1 -> code.ViewType.multi_type2
                 else -> code.ViewType.multi_type3
@@ -90,9 +109,37 @@ class SearchUserrRecyclerAdapter (
     }
 
 
-    override fun getItemCount() = mList.size
+    override fun getItemCount() = mMatchIdList.size + 2 // 앞의 두개는 매치 목록이 아님
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val data = mList[position]
+
+//        뷰타입이 3번일때는
+
+        if (holder.itemViewType == code.ViewType.multi_type3) {
+            val data = mMatchIdList[position-2] // 0,1번째는 다른거니까
+
+            val retrofit = AsiaServerAPI.getRetrofit(mContext)
+            val apiList3 = retrofit.create(API3List::class.java)
+            apiList3.getMatchDetail(
+                data,
+                "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460").enqueue(object :
+                Callback<MatchDetailData> {
+                override fun onResponse(
+                    call: Call<MatchDetailData>,
+                    response: Response<MatchDetailData>
+                ) {
+                    val b = response.body()!!
+                    Log.d("왜안되는건데", b.toString())
+                }
+
+                override fun onFailure(
+                    call: Call<MatchDetailData>,
+                    t: Throwable
+                ) {
+
+                }
+            })
+        }
 
     }
 

@@ -12,17 +12,28 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
+import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchResultActivity : BaseActivity() {
     lateinit var binding : ActivityParcticBinding
-    var mList = ArrayList<DataItem>()
-    lateinit var  mAdapter: SearchUserrRecyclerAdapter
+
+    lateinit var mAdapter: SearchUserrRecyclerAdapter
+
+
+    val mMatchIdList = ArrayList<String>()
+
+    lateinit var summonerInfo : SummonerResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= DataBindingUtil.setContentView(this, R.layout.activity_parctic)
+        summonerInfo = intent.getSerializableExtra("summoner") as SummonerResponse
         setupEvents()
         setValues()
         getSupportActionBar()?.hide()
@@ -30,12 +41,87 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mMatchIdList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
 
-        initializeData()
+//                  성공하면 소환사 랭크 리그 정보를 넣어줌.
+        apiList.getLeague(
+            summonerInfo.id,
+            "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460"
+        ).enqueue(object: Callback<List<LeagueResponse>> {
+            override fun onResponse(
+                call: Call<List<LeagueResponse>>,
+                response: Response<List<LeagueResponse>>
+            ) {
+                val list = response.body()!!
+//                                파이어베이스 데이터 넣기
+                if(list.size != 0 ) {
+                    realtimeDB.getReference("League").child(summonerInfo.name)
+                        .setValue(list[0])
+                }
+//                                데이터베이스에 puuid를 꺼내옴.
+                realtimeDB.getReference("Summoner").addValueEventListener(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val value = snapshot.children.last().child("puuid").value.toString()
+//                                       puuid넣은 최근 30게임 전적이름 가져와서 데이터베이스 넣어줌.
+                        apiList3.getMatch(
+                            value,
+                            "30",
+                            "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460")
+                            .enqueue(object : Callback<List<String>> {
+                                override fun onResponse(
+                                    call: Call<List<String>>,
+                                    response: Response<List<String>>
+                                ) {
+                                    val a = response.body()!!
+                                    realtimeDB.getReference("Match").child(summonerInfo.name).setValue(a)
+
+                                    realtimeDB.getReference("Match").addValueEventListener(object : ValueEventListener{
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+
+                                            for (matchItem in snapshot.child(summonerInfo.name).children) {
+                                                Log.d("매치id목록", matchItem.value.toString())
+                                                mMatchIdList.add(matchItem.value.toString())
+                                            }
+
+                                            mAdapter.notifyDataSetChanged()
+
+
+                                            // 이거는 좀 보류 해놧다가 물어봐야됨 내일.
+
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+
+                                        }
+                                    })
+
+                                }
+
+                                override fun onFailure(
+                                    call: Call<List<String>>,
+                                    t: Throwable
+                                ) {
+
+                                }
+
+                            })
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+            }
+
+            override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
+
+            }
+        })
 
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
@@ -75,25 +161,5 @@ class SearchResultActivity : BaseActivity() {
 
 
 
-    }
-    fun initializeData() {
-        mList!!.add(DataItem(null, "2021 Master1", code.ViewType.multi_type1))
-        mList!!.add(DataItem(null, "2020 Master1", code.ViewType.multi_type1))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자1", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type2))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-        mList!!.add(DataItem("안녕하세요", "사용자2", code.ViewType.multi_type3))
-
-        mAdapter.notifyDataSetChanged()
     }
 }
