@@ -180,20 +180,72 @@ class SearchResultActivity : BaseActivity() {
 
 
 
-        realtimeDB.getReference("Match").addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.children.last().child(summonerInfo.name).key.toString()
 
-                Log.d("값", "Value is" + value)
 
-//                val WinLoss : TextView = findViewById(R.id.txtWin)
-//                WinLoss.setText(value)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
+//        realtimeDB.getReference("MatchDetail").addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val value0 = snapshot.child("metadata").child("participants").child("0").value.toString()
+//                val value1 = snapshot.child("metadata").child("participants").child("1").value.toString()
+//                val value2 = snapshot.child("metadata").child("participants").child("2").value.toString()
+//                val value3 = snapshot.child("metadata").child("participants").child("3").value.toString()
+//                val value4 = snapshot.child("metadata").child("participants").child("4").value.toString()
+//                val value5 = snapshot.child("metadata").child("participants").child("5").value.toString()
+//                val value6 = snapshot.child("metadata").child("participants").child("6").value.toString()
+//                val value7 = snapshot.child("metadata").child("participants").child("7").value.toString()
+//                val value8 = snapshot.child("metadata").child("participants").child("8").value.toString()
+//                val value9 = snapshot.child("metadata").child("participants").child("9").value.toString()
+//
+//
+//                val id = snapshot.children.last().child(summonerInfo.puuid).key.toString()
+//                if(value0 == id){
+//                    val detail0 = snapshot.child("info").child("participants").child("0").child("assists").value.toString()
+//                    Log.d("미친로직" , detail0)
+//                }
+//                else if (value1 == id){
+//                    val detail1 = snapshot.child("info").child("participants").child("1").child("assists").value.toString()
+//                    Log.d("미친로직" , detail1)
+//                }
+//                else if (value2 == id){
+//                    val detail2 = snapshot.child("info").child("participants").child("2").child("assists").value.toString()
+//                    Log.d("미친로직" , detail2)
+//                }
+//                else if (value3 == id){
+//                    val detail3 = snapshot.child("info").child("participants").child("3").child("assists").value.toString()
+//                    Log.d("미친로직" , detail3)
+//                }
+//                else if (value4 == id){
+//                    val detail4 = snapshot.child("info").child("participants").child("4").child("assists").value.toString()
+//                    Log.d("미친로직" , detail4)
+//                }
+//                else if (value5 == id){
+//                    val detail5 = snapshot.child("info").child("participants").child("5").child("assists").value.toString()
+//                    Log.d("미친로직" , detail5)
+//                }
+//                else if (value6 == id){
+//                    val detail6 = snapshot.child("info").child("participants").child("6").child("assists").value.toString()
+//                    Log.d("미친로직" , detail6)
+//                }
+//                else if (value7 == id){
+//                    val detail7 = snapshot.child("info").child("participants").child("7").child("assists").value.toString()
+//                    Log.d("미친로직" , detail7)
+//                }
+//                else if (value8 == id){
+//                    val detail8 = snapshot.child("info").child("participants").child("8").child("assists").value.toString()
+//                    Log.d("미친로직" , detail8)
+//                }
+//                else {
+//                    val detail9 = snapshot.child("info").child("participants").child("9").child("assists").value.toString()
+//                    Log.d("미친로직" , detail9)
+//                }
+//
+////                val WinLoss : TextView = findViewById(R.id.txtWin)
+////                WinLoss.setText(value)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//        })
 
 
     }

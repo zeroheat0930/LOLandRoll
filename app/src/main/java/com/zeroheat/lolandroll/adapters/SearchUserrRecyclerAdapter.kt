@@ -62,16 +62,22 @@ class SearchUserrRecyclerAdapter(
     }
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
+        var content1: TextView
+        var content2: TextView
+        var content3: TextView
+        var content4: TextView
+        var content5: TextView
+        var content6: TextView
+
         var image: ImageView
 
         init {
-            content = itemView.findViewById(R.id.txtWin)
-            content = itemView.findViewById(R.id.txtMatchTime)
-            content = itemView.findViewById(R.id.txtKda)
-            content = itemView.findViewById(R.id.txtKillPer)
-            content = itemView.findViewById(R.id.txtGameMode)
-            content = itemView.findViewById(R.id.txtGameDate)
+            content1 = itemView.findViewById(R.id.txtWin)
+            content2 = itemView.findViewById(R.id.txtMatchTime)
+            content3 = itemView.findViewById(R.id.txtKda)
+            content4 = itemView.findViewById(R.id.txtKillPer)
+            content5 = itemView.findViewById(R.id.txtGameMode)
+            content6 = itemView.findViewById(R.id.txtGameDate)
             image = itemView.findViewById(R.id.imgUsedChamp)
             image = itemView.findViewById(R.id.imgD)
             image = itemView.findViewById(R.id.imgF)
@@ -84,7 +90,14 @@ class SearchUserrRecyclerAdapter(
             image = itemView.findViewById(R.id.imgItem5)
             image = itemView.findViewById(R.id.imgItem6)
             image = itemView.findViewById(R.id.imgItemWard)
+
+            fun bind(data: String) {
+
+
+
+            }
         }
+
 
     }
         override fun getItemViewType(position: Int): Int {
@@ -142,6 +155,7 @@ class SearchUserrRecyclerAdapter(
                     val b = response.body()!!
                     Log.d("왜안되는건데", b.toString())
                     realtimeDB.getReference("MatchDetail").setValue(b)
+                    
 
                 }
 
