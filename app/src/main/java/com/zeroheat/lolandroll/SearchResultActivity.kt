@@ -15,7 +15,6 @@ import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
-import com.zeroheat.lolandroll.recyclerview.code
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +25,8 @@ class SearchResultActivity : BaseActivity() {
     lateinit var mAdapter: SearchUserrRecyclerAdapter
 
 
+    val mDataItem = ArrayList<DataItem>()
+    val mRankList = ArrayList<LeagueResponse>()
     val mMatchIdList = ArrayList<String>()
 
 
@@ -42,7 +43,7 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mMatchIdList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
@@ -78,6 +79,7 @@ class SearchResultActivity : BaseActivity() {
                                     response: Response<List<String>>
                                 ) {
                                     val a = response.body()!!
+                                    Log.d("로그a", a.toString())
                                     realtimeDB.getReference("Match").child(summonerInfo.name).setValue(a)
 
                                     realtimeDB.getReference("Match").addValueEventListener(object : ValueEventListener{
@@ -88,10 +90,9 @@ class SearchResultActivity : BaseActivity() {
                                                 mMatchIdList.add(matchItem.value.toString())
                                             }
 
+
                                             mAdapter.notifyDataSetChanged()
 
-
-                                            // 이거는 좀 보류 해놧다가 물어봐야됨 내일.
 
                                         }
 
@@ -134,6 +135,15 @@ class SearchResultActivity : BaseActivity() {
 
 
     override fun setValues() {
+
+
+
+
+
+
+
+
+//        제일 위에 프사쪽 UI 매칭
         realtimeDB.getReference("Summoner").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val value = snapshot.children.last().child(summonerInfo.profileIconId.toString()).key.toString()
@@ -160,6 +170,23 @@ class SearchResultActivity : BaseActivity() {
             }
         })
 
+
+
+
+        realtimeDB.getReference("Match").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val value = snapshot.children.last().child(summonerInfo.name).key.toString()
+
+                Log.d("값", "Value is" + value)
+
+//                val WinLoss : TextView = findViewById(R.id.txtWin)
+//                WinLoss.setText(value)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
 
     }

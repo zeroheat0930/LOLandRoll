@@ -8,22 +8,29 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
-import com.zeroheat.lolandroll.api.ServerAPI1
-import com.zeroheat.lolandroll.api.ServerAPI2
-import com.zeroheat.lolandroll.datas.ChampionBasicData
+import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.MatchDetailData
+import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import com.zeroheat.lolandroll.recyclerview.code
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchUserrRecyclerAdapter (
-    val mContext : Context,
+class SearchUserrRecyclerAdapter(
+    val mContext: Context,
+    val mRankList: ArrayList<DataItem>,
+    val mDataItem: ArrayList<LeagueResponse>,
     val mMatchIdList: List<String>,
+
+
+    //    멤버변수로 RealtimeDb에 연결
+    val realtimeDB: FirebaseDatabase = FirebaseDatabase.getInstance("https://lolandroll-543b4-default-rtdb.firebaseio.com/")
+
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     inner class FirstViewHolder internal constructor(itemView: View) :
@@ -109,7 +116,7 @@ class SearchUserrRecyclerAdapter (
     }
 
 
-    override fun getItemCount() = mMatchIdList.size + 2 // 앞의 두개는 매치 목록이 아님
+    override fun getItemCount() = mRankList.size + mDataItem.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -117,9 +124,13 @@ class SearchUserrRecyclerAdapter (
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
             val data = mMatchIdList[position-2] // 0,1번째는 다른거니까
+            Log.d("data값", data)
+
 
             val retrofit = AsiaServerAPI.getRetrofit(mContext)
             val apiList3 = retrofit.create(API3List::class.java)
+
+
             apiList3.getMatchDetail(
                 data,
                 "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
@@ -130,6 +141,7 @@ class SearchUserrRecyclerAdapter (
                 ) {
                     val b = response.body()!!
                     Log.d("왜안되는건데", b.toString())
+                    realtimeDB.getReference("MatchDetail").setValue(b)
                 }
 
                 override fun onFailure(

@@ -17,7 +17,7 @@ interface API3List {
 
     @GET("/lol/match/v5/matches/{matchId}")
     fun getMatchDetail(
-        @Path("matchId") matchId : String,
+        @Path("matchId") matchId: String,
         @Query("api_key") api_key: String
     ): Call<MatchDetailData>
 
