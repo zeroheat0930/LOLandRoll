@@ -142,6 +142,7 @@ class SearchUserrRecyclerAdapter(
                     val b = response.body()!!
                     Log.d("왜안되는건데", b.toString())
                     realtimeDB.getReference("MatchDetail").setValue(b)
+
                 }
 
                 override fun onFailure(

@@ -63,15 +63,18 @@ class SearchResultActivity : BaseActivity() {
                     realtimeDB.getReference("League").child(summonerInfo.name)
                         .setValue(list[0])
                 }
-//                                데이터베이스에 puuid를 꺼내옴.
+
+                //                                데이터베이스에 puuid를 꺼내옴.
                 realtimeDB.getReference("Summoner").addValueEventListener(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        val value = snapshot.children.last().child("puuid").value.toString()
+                        val value = snapshot.children.last().child(summonerInfo.puuid).key.toString()
+
+                        Log.d("value", value)
 //                                       puuid넣은 최근 30게임 전적이름 가져와서 데이터베이스 넣어줌.
                         apiList3.getMatch(
                             value,
-                            "30",
+                            "20",
                             "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa")
                             .enqueue(object : Callback<List<String>> {
                                 override fun onResponse(
@@ -80,11 +83,12 @@ class SearchResultActivity : BaseActivity() {
                                 ) {
                                     val a = response.body()!!
                                     Log.d("로그a", a.toString())
+//                                    소환사 매치 목록 20개를 match데이터 베이스에 소환사 이름별대로 저장을함.
                                     realtimeDB.getReference("Match").child(summonerInfo.name).setValue(a)
-
+//                                      매치에 등록된 데이터를 꺼내오는 코드 시작
                                     realtimeDB.getReference("Match").addValueEventListener(object : ValueEventListener{
                                         override fun onDataChange(snapshot: DataSnapshot) {
-
+//                                              스냅샷이 소환사이름데이터일때 데이터를 mMatchIdList에 넣어줌.
                                             for (matchItem in snapshot.child(summonerInfo.name).children) {
                                                 Log.d("매치id목록", matchItem.value.toString())
                                                 mMatchIdList.add(matchItem.value.toString())
@@ -118,12 +122,15 @@ class SearchResultActivity : BaseActivity() {
                     }
                 })
 
+
             }
 
             override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
 
             }
         })
+
+
 
 
 //        val recyclerView = findViewById<RecyclerView>(R.id.threeRecycle)
