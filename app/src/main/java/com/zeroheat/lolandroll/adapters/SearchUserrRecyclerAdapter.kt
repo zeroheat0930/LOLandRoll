@@ -78,7 +78,7 @@ class SearchUserrRecyclerAdapter (
             image = itemView.findViewById(R.id.imgItem6)
             image = itemView.findViewById(R.id.imgItemWard)
         }
-//아침커밋
+
     }
         override fun getItemViewType(position: Int): Int {
 
@@ -122,7 +122,7 @@ class SearchUserrRecyclerAdapter (
             val apiList3 = retrofit.create(API3List::class.java)
             apiList3.getMatchDetail(
                 data,
-                "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460").enqueue(object :
+                "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
                 Callback<MatchDetailData> {
                 override fun onResponse(
                     call: Call<MatchDetailData>,

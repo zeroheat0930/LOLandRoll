@@ -86,36 +86,36 @@
 
 
 
-                    <HorizontalScrollView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+<!--                    <HorizontalScrollView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content">-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal">-->
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="S2021 PLATINUM 4" />
+<!--                        <androidx.appcompat.widget.AppCompatButton-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="S2021 PLATINUM 4" />-->
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="S2021 PLATINUM 4" />
+<!--                        <androidx.appcompat.widget.AppCompatButton-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="S2021 PLATINUM 4" />-->
 
-                            <androidx.appcompat.widget.AppCompatButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="S2021 PLATINUM 4" />
+<!--                            <androidx.appcompat.widget.AppCompatButton-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="S2021 PLATINUM 4" />-->
 
-                            <androidx.appcompat.widget.AppCompatButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="S2021 PLATINUM 4" />
+<!--                            <androidx.appcompat.widget.AppCompatButton-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="S2021 PLATINUM 4" />-->
 
-                </LinearLayout>
-                    </HorizontalScrollView>
+<!--                </LinearLayout>-->
+<!--                    </HorizontalScrollView>-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/threeRecycle"

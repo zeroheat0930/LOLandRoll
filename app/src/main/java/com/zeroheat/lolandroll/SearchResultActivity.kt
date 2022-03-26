@@ -28,6 +28,7 @@ class SearchResultActivity : BaseActivity() {
 
     val mMatchIdList = ArrayList<String>()
 
+
     lateinit var summonerInfo : SummonerResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ class SearchResultActivity : BaseActivity() {
 //                  성공하면 소환사 랭크 리그 정보를 넣어줌.
         apiList.getLeague(
             summonerInfo.id,
-            "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460"
+            "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa"
         ).enqueue(object: Callback<List<LeagueResponse>> {
             override fun onResponse(
                 call: Call<List<LeagueResponse>>,
@@ -70,7 +71,7 @@ class SearchResultActivity : BaseActivity() {
                         apiList3.getMatch(
                             value,
                             "30",
-                            "RGAPI-8e6f79bb-ff54-4bde-a519-d7f8f85f7460")
+                            "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa")
                             .enqueue(object : Callback<List<String>> {
                                 override fun onResponse(
                                     call: Call<List<String>>,
@@ -135,9 +136,9 @@ class SearchResultActivity : BaseActivity() {
     override fun setValues() {
         realtimeDB.getReference("Summoner").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.children.last().child("profileIconId").value.toString()
-                val value1 = snapshot.children.last().child("name").value.toString()
-                val value2 = snapshot.children.last().child("summonerLevel").value.toString()
+                val value = snapshot.children.last().child(summonerInfo.profileIconId.toString()).key.toString()
+                val value1 = snapshot.children.last().child(summonerInfo.name).key.toString()
+                val value2 = snapshot.children.last().child(summonerInfo.summonerLevel.toString()).key.toString()
 
                 Log.d("값" , value)
                 Log.d("값", "Value1 is" + value1)
