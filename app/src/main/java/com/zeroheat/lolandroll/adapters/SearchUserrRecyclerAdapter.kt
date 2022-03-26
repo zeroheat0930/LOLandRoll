@@ -27,11 +27,14 @@ class SearchUserrRecyclerAdapter(
     val mDataItem: ArrayList<LeagueResponse>,
     val mMatchIdList: List<String>,
 
+    var summonerInfo : SummonerResponse,
+
 
     //    멤버변수로 RealtimeDb에 연결
     val realtimeDB: FirebaseDatabase = FirebaseDatabase.getInstance("https://lolandroll-543b4-default-rtdb.firebaseio.com/")
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
 
     inner class FirstViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -91,8 +94,9 @@ class SearchUserrRecyclerAdapter(
             image = itemView.findViewById(R.id.imgItem6)
             image = itemView.findViewById(R.id.imgItemWard)
 
-            fun bind(data: String) {
 
+
+            fun bind(data: String) {
 
 
             }
@@ -144,28 +148,7 @@ class SearchUserrRecyclerAdapter(
             val apiList3 = retrofit.create(API3List::class.java)
 
 
-            apiList3.getMatchDetail(
-                data,
-                "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
-                Callback<MatchDetailData> {
-                override fun onResponse(
-                    call: Call<MatchDetailData>,
-                    response: Response<MatchDetailData>
-                ) {
-                    val b = response.body()!!
-                    Log.d("왜안되는건데", b.toString())
-                    realtimeDB.getReference("MatchDetail").setValue(b)
-                    
 
-                }
-
-                override fun onFailure(
-                    call: Call<MatchDetailData>,
-                    t: Throwable
-                ) {
-
-                }
-            })
         }
 
     }

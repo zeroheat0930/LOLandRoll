@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
 import retrofit2.Call
@@ -43,7 +44,7 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList, summonerInfo)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
@@ -90,9 +91,48 @@ class SearchResultActivity : BaseActivity() {
                                         override fun onDataChange(snapshot: DataSnapshot) {
 //                                              스냅샷이 소환사이름데이터일때 데이터를 mMatchIdList에 넣어줌.
                                             for (matchItem in snapshot.child(summonerInfo.name).children) {
+
                                                 Log.d("매치id목록", matchItem.value.toString())
+
+                                                apiList3.getMatchDetail(
+                                                    matchItem.value.toString(),
+                                                    "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
+                                                    Callback<MatchDetailData> {
+                                                    override fun onResponse(
+                                                        call: Call<MatchDetailData>,
+                                                        response: Response<MatchDetailData>
+                                                    ) {
+                                                        val b = response.body()!!
+
+                                                        Log.d("b", b.toString())
+                                                        realtimeDB.getReference("MatchDetail").child(summonerInfo.name).setValue(b)
+//                                                        for (i in 0..9) {
+//                                                            val jsonObj2 = b.info.participants[i].puuid
+//                                                            if (summonerInfo.puuid == jsonObj2){
+//                                                                val hoho = b.info.participants[i].championName
+//
+//                                                                finish()
+//                                                                Log.d("호호", hoho)
+//
+//                                                            }
+//
+//                                                        }
+
+
+                                                    }
+
+                                                    override fun onFailure(
+                                                        call: Call<MatchDetailData>,
+                                                        t: Throwable
+                                                    ) {
+
+                                                    }
+                                                })
+
                                                 mMatchIdList.add(matchItem.value.toString())
                                             }
+
+
 
 
                                             mAdapter.notifyDataSetChanged()
@@ -144,12 +184,6 @@ class SearchResultActivity : BaseActivity() {
     override fun setValues() {
 
 
-
-
-
-
-
-
 //        제일 위에 프사쪽 UI 매칭
         realtimeDB.getReference("Summoner").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -179,73 +213,6 @@ class SearchResultActivity : BaseActivity() {
 
 
 
-
-
-
-//        realtimeDB.getReference("MatchDetail").addValueEventListener(object :ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val value0 = snapshot.child("metadata").child("participants").child("0").value.toString()
-//                val value1 = snapshot.child("metadata").child("participants").child("1").value.toString()
-//                val value2 = snapshot.child("metadata").child("participants").child("2").value.toString()
-//                val value3 = snapshot.child("metadata").child("participants").child("3").value.toString()
-//                val value4 = snapshot.child("metadata").child("participants").child("4").value.toString()
-//                val value5 = snapshot.child("metadata").child("participants").child("5").value.toString()
-//                val value6 = snapshot.child("metadata").child("participants").child("6").value.toString()
-//                val value7 = snapshot.child("metadata").child("participants").child("7").value.toString()
-//                val value8 = snapshot.child("metadata").child("participants").child("8").value.toString()
-//                val value9 = snapshot.child("metadata").child("participants").child("9").value.toString()
-//
-//
-//                val id = snapshot.children.last().child(summonerInfo.puuid).key.toString()
-//                if(value0 == id){
-//                    val detail0 = snapshot.child("info").child("participants").child("0").child("assists").value.toString()
-//                    Log.d("미친로직" , detail0)
-//                }
-//                else if (value1 == id){
-//                    val detail1 = snapshot.child("info").child("participants").child("1").child("assists").value.toString()
-//                    Log.d("미친로직" , detail1)
-//                }
-//                else if (value2 == id){
-//                    val detail2 = snapshot.child("info").child("participants").child("2").child("assists").value.toString()
-//                    Log.d("미친로직" , detail2)
-//                }
-//                else if (value3 == id){
-//                    val detail3 = snapshot.child("info").child("participants").child("3").child("assists").value.toString()
-//                    Log.d("미친로직" , detail3)
-//                }
-//                else if (value4 == id){
-//                    val detail4 = snapshot.child("info").child("participants").child("4").child("assists").value.toString()
-//                    Log.d("미친로직" , detail4)
-//                }
-//                else if (value5 == id){
-//                    val detail5 = snapshot.child("info").child("participants").child("5").child("assists").value.toString()
-//                    Log.d("미친로직" , detail5)
-//                }
-//                else if (value6 == id){
-//                    val detail6 = snapshot.child("info").child("participants").child("6").child("assists").value.toString()
-//                    Log.d("미친로직" , detail6)
-//                }
-//                else if (value7 == id){
-//                    val detail7 = snapshot.child("info").child("participants").child("7").child("assists").value.toString()
-//                    Log.d("미친로직" , detail7)
-//                }
-//                else if (value8 == id){
-//                    val detail8 = snapshot.child("info").child("participants").child("8").child("assists").value.toString()
-//                    Log.d("미친로직" , detail8)
-//                }
-//                else {
-//                    val detail9 = snapshot.child("info").child("participants").child("9").child("assists").value.toString()
-//                    Log.d("미친로직" , detail9)
-//                }
-//
-////                val WinLoss : TextView = findViewById(R.id.txtWin)
-////                WinLoss.setText(value)
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//        })
 
 
     }
