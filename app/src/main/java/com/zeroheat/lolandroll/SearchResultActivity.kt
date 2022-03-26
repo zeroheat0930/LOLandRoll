@@ -92,7 +92,7 @@ class SearchResultActivity : BaseActivity() {
 //                                              스냅샷이 소환사이름데이터일때 데이터를 mMatchIdList에 넣어줌.
                                             for (matchItem in snapshot.child(summonerInfo.name).children) {
 
-                                                Log.d("매치id목록", matchItem.value.toString())
+//                                                Log.d("매치id목록", matchItem.value.toString())
 
                                                 apiList3.getMatchDetail(
                                                     matchItem.value.toString(),
@@ -106,18 +106,21 @@ class SearchResultActivity : BaseActivity() {
 
                                                         Log.d("b", b.toString())
                                                         realtimeDB.getReference("MatchDetail").child(summonerInfo.name).setValue(b)
-//                                                        for (i in 0..9) {
-//                                                            val jsonObj2 = b.info.participants[i].puuid
-//                                                            if (summonerInfo.puuid == jsonObj2){
-//                                                                val hoho = b.info.participants[i].championName
-//
-//                                                                finish()
-//                                                                Log.d("호호", hoho)
-//
-//                                                            }
-//
-//                                                        }
 
+                                                        realtimeDB.getReference("MatchDetail").addValueEventListener(object : ValueEventListener{
+                                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                                for (matchItem in snapshot.child(summonerInfo.name).children) {
+                                                                    Log.d("무슨목록?",
+                                                                        matchItem.value.toString()
+                                                                    )
+
+                                                                }
+                                                            }
+
+                                                            override fun onCancelled(error: DatabaseError) {
+
+                                                            }
+                                                        })
 
                                                     }
 
@@ -129,7 +132,9 @@ class SearchResultActivity : BaseActivity() {
                                                     }
                                                 })
 
+//                                                mMatchIdList.clear()
                                                 mMatchIdList.add(matchItem.value.toString())
+
                                             }
 
 
