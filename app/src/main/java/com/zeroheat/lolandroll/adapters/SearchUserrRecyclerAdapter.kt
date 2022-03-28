@@ -10,6 +10,7 @@ import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.recyclerview.*
 
 class SearchUserrRecyclerAdapter(
@@ -17,7 +18,7 @@ class SearchUserrRecyclerAdapter(
 
     val mFirstList : ArrayList<FirstData>,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
-    val mThirdList : ArrayList<ThirdData>,
+    val mMatchDetailList : ArrayList<MatchDetailData>,
 
 
 //    val mRankList: ArrayList<LeagueResponse>,
@@ -110,7 +111,7 @@ class SearchUserrRecyclerAdapter(
 
     //  목록이 몇개인지
     override fun getItemCount() =
-        mThirdList.size + 2 // 앞의 두개는 매치 목록이 아님
+        mMatchDetailList.size + 2 // 앞의 두개는 매치 목록이 아님
 
 
     //    위치에 맞는 데이터 추출
