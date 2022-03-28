@@ -44,7 +44,7 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mFirstList, mThisSeasonRankList, mMatchDetailList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, summonerInfo.puuid, mFirstList, mThisSeasonRankList, mMatchDetailList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 

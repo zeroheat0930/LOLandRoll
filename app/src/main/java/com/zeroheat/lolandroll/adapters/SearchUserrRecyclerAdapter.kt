@@ -1,6 +1,7 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.zeroheat.lolandroll.recyclerview.*
 
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
-
+    val myPuuId: String,
     val mFirstList : ArrayList<FirstData>,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mMatchDetailList : ArrayList<MatchDetailData>,
@@ -69,12 +70,27 @@ class SearchUserrRecyclerAdapter(
         RecyclerView.ViewHolder(itemView) {
 
         val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
+        val txtKda = itemView.findViewById<TextView>(R.id.txtKda)
 //        val txtWin = itemView.findViewById<TextView>(R.id.txtWin)
 
 
-        fun bind3(data: String) {
+        fun bind(data: MatchDetailData) {
 
-            txtGameMode.text = data
+            txtGameMode.text = data.info.gameMode
+            Log.d("이 판 id", data.info.gameId.toString())
+
+            for (gamer in data.info.participants) {
+                Log.d("이 판 참여자목록", gamer.summonerName)
+
+                if (gamer.puuid == myPuuId) {
+                    Log.d("내 라인?", gamer.role)
+
+                    txtKda.text = "${gamer.kills}/${gamer.deaths}/${gamer.assists}"
+                }
+            }
+
+
+
         }
 
 
@@ -134,10 +150,10 @@ class SearchUserrRecyclerAdapter(
 //        뷰타입이 3번일때는
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
-//            val data = mThirdList[position - 2] // 0,1번째는 다른거니까
+            val data = mMatchDetailList[position - 2] // 0,1번째는 다른거니까
 //            Log.d("data값", data)
 //
-//            (holder as ThirdViewHolder).bind3(data)
+            (holder as ThirdViewHolder).bind(data)
 
 
             val retrofit = AsiaServerAPI.getRetrofit(mContext)
