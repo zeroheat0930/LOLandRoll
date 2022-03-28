@@ -118,6 +118,15 @@ class SearchResultActivity : BaseActivity() {
                                                             override fun onDataChange(snapshot: DataSnapshot) {
                                                                 val abab = snapshot.child(summonerInfo.name).child("info").child("participants")
 
+                                                                for (item in abab.children) {
+                                                                    val puuId = item.child("puuid").value.toString()
+                                                                    if (puuId == summonerInfo.puuid) {
+
+                                                                        Log.d("abab내부item", item.toString())
+                                                                        Log.d("puuid값", puuId)
+                                                                    }
+                                                                }
+
 
 
 
@@ -148,6 +157,7 @@ class SearchResultActivity : BaseActivity() {
 
 
 
+                                            Log.d("어댑터새로고침확인용", "이벤트확인")
                                             mAdapter.notifyDataSetChanged()
 
 

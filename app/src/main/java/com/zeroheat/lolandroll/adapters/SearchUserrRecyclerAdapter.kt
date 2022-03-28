@@ -28,7 +28,7 @@ class SearchUserrRecyclerAdapter(
     val mMatchIdList: List<String>,
 
 
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     inner class FirstViewHolder internal constructor(itemView: View) :
@@ -36,12 +36,18 @@ class SearchUserrRecyclerAdapter(
 
         val btnRank = itemView.findViewById<TextView>(R.id.btnRank)
 
-        fun bind1(data1: LeagueResponse){
-            btnRank.text = data1.tier
+        fun bind1(leagueList: List<LeagueResponse>) {
+
+            for (league in leagueList) {
+//                첨부된 시즌별 랭크 하나하나를 레이아웃에 addView해준다던지
+            }
+
+
         }
 
 
     }
+
     inner class SecondViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 //        var content: TextView
@@ -59,56 +65,33 @@ class SearchUserrRecyclerAdapter(
         }
 
 
-
-
     }
+
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-        val txtStartPlaceName = itemView.findViewById<TextView>(R.id.txtWin)
+        val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
 
+        fun bind3(data: String) {
 
-//            content1 = itemView.findViewById(R.id.txtWin)
-//            content2 = itemView.findViewById(R.id.txtMatchTime)
-//            content3 = itemView.findViewById(R.id.txtKda)
-//            content4 = itemView.findViewById(R.id.txtKillPer)
-//            content5 = itemView.findViewById(R.id.txtGameMode)
-//            content6 = itemView.findViewById(R.id.txtGameDate)
-//            image = itemView.findViewById(R.id.imgUsedChamp)
-//            image = itemView.findViewById(R.id.imgD)
-//            image = itemView.findViewById(R.id.imgF)
-//            image = itemView.findViewById(R.id.imgUsedRun1)
-//            image = itemView.findViewById(R.id.imgUsedRun2)
-//            image = itemView.findViewById(R.id.imgItem1)
-//            image = itemView.findViewById(R.id.imgItem2)
-//            image = itemView.findViewById(R.id.imgItem3)
-//            image = itemView.findViewById(R.id.imgItem4)
-//            image = itemView.findViewById(R.id.imgItem5)
-//            image = itemView.findViewById(R.id.imgItem6)
-//            image = itemView.findViewById(R.id.imgItemWard)
-
-
-
-            fun bind3(data: String) {
-
-                txtStartPlaceName.text = data
-            }
-
+            txtGameMode.text = data
+        }
 
 
     }
-        override fun getItemViewType(position: Int): Int {
+
+    override fun getItemViewType(position: Int): Int {
 
 //            홀수줄 : 데이터목록
 //            짝수줄 : 챔프목록
-            return when(position) {
-                0 -> code.ViewType.multi_type1
-                1 -> code.ViewType.multi_type2
-                else -> code.ViewType.multi_type3
-            }
+        return when (position) {
+            0 -> code.ViewType.multi_type1
+            1 -> code.ViewType.multi_type2
+            else -> code.ViewType.multi_type3
         }
+    }
 
-//    어떤 xml을 inflate해서 사용할건지
+    //    어떤 xml을 inflate해서 사용할건지
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
         val context = mContext
@@ -126,31 +109,32 @@ class SearchUserrRecyclerAdapter(
 
     }
 
-//  목록이 몇개인지
-    override fun getItemCount() = mRankList.size + mLeagueList.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
+    //  목록이 몇개인지
+    override fun getItemCount() =
+        mRankList.size + mLeagueList.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
 
 
-
-//    위치에 맞는 데이터 추출
+    //    위치에 맞는 데이터 추출
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
 
 //        뷰타입이 1번일때는
-        if (holder.itemViewType == code.ViewType.multi_type1){
-            val data1 = mRankList[position]
+        if (holder.itemViewType == code.ViewType.multi_type1) {
+//            val data1 = mRankList[position]
 
         }
 //        뷰타입이 2번일때는
-        if (holder.itemViewType == code.ViewType.multi_type2){
-            val data2 = mLeagueList[position]
-            Log.d("data2", data2.toString())
+        if (holder.itemViewType == code.ViewType.multi_type2) {
+//            val data2 = mLeagueList[position]
+//            Log.d("data2", data2.toString())
         }
 //        뷰타입이 3번일때는
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
-            val data = mMatchIdList[position] // 0,1번째는 다른거니까
+            val data = mMatchIdList[position - 2] // 0,1번째는 다른거니까
             Log.d("data값", data)
 
+            (holder as ThirdViewHolder).bind3(data)
 
 
             val retrofit = AsiaServerAPI.getRetrofit(mContext)
@@ -176,7 +160,6 @@ class SearchUserrRecyclerAdapter(
 //
 //                }
 //            })
-
 
 
         }
