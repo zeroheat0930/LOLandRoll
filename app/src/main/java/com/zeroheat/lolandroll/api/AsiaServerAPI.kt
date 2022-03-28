@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class AsiaServerAPI{
 
@@ -22,7 +23,11 @@ class AsiaServerAPI{
 //               Date 자료형으로 파싱 => String을 yyyy-MM-dd HH:mm:ss 으로 파싱해서 저장해야함. (고정된 양식으로 내려줌)
 
             val gson = GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss")  // 서버가 이런 양식으로 보내주는 String을
+                .setDateFormat("M월 d일 a h시 m분")  // 서버가 이런 양식으로 보내주는 String을
+                .registerTypeAdapter(
+                    Date::class.java,
+                    DateDeserializer()
+                ) // 어떤 형태의 자료형에 적용시킬지?  Date클래스로 파싱.
                 .create()
 
             val myClient = OkHttpClient.Builder()

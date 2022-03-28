@@ -19,6 +19,9 @@ import com.zeroheat.lolandroll.recyclerview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
@@ -74,6 +77,9 @@ class SearchUserrRecyclerAdapter(
             val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
             val txtKda = itemView.findViewById<TextView>(R.id.txtKda)
             val txtKillPer = itemView.findViewById<TextView>(R.id.txtKillPer)
+            val txtWin = itemView.findViewById<TextView>(R.id.txtWin)
+            val txtMatchTime = itemView.findViewById<TextView>(R.id.txtMatchTime)
+            val txtGameDate = itemView.findViewById<TextView>(R.id.txtGameDate)
 
 
             fun bind(data: MatchDetailData) {
@@ -107,7 +113,36 @@ class SearchUserrRecyclerAdapter(
                     // URF, 이벤트맵 같은거는 그냥 gameMode로 나오게 설정.
                 }
 
+//              게임시간 textview
+                var mini = data.info.gameDuration/60
+                Log.d("분", mini.toString())
+                var seco = data.info.gameDuration - (60*mini)
+                Log.d("초", seco.toString())
+//                남는부분 0채우는법
+                txtMatchTime.text = "${mini}분 ${seco}초"
 
+
+//              게임날자 textview
+
+                val now = Calendar.getInstance()
+                val timeAgo = now.timeInMillis - data.info.gameEndTimestamp
+
+                if (timeAgo < 24 * 60 * 60 * 1000){
+
+//                    24시간 이내 : ? 시간 전
+                    val diff = timeAgo / 1000 / 60 / 60
+                    txtGameDate.text = "${diff}시간 전"
+                }
+                else if( timeAgo < 10 * 24 * 60 * 60 * 1000 ) {
+//            10일 이내 : ?일 전
+                    val diffDay = timeAgo / 1000 / 60 / 60 / 24
+                    txtGameDate.text = "${diffDay}일 전"
+                }
+                else {
+                    val sdf = SimpleDateFormat("M월 d일 a h시 m분")
+//            10일 이상 : sdf로 가공해서 리턴.
+                    txtGameDate.text = sdf.format(data.info.gameStartTimestamp)
+                }
 
 
                 for (gamer in data.info.participants) {
@@ -116,18 +151,30 @@ class SearchUserrRecyclerAdapter(
                     if (gamer.puuid == myPuuId) {
 //                        Log.d("내 라인?", gamer.role)
 
+//                      승/패 적어주는 textview
+                        if(gamer.win == true){
+                            txtWin.text = "승"
+                        }else{
+                            txtWin.text = "패"}
+
+
+
+
+
+
+//                      킬 데스 어시스트 textview
                         txtKda.text = "${gamer.kills}/${gamer.deaths}/${gamer.assists}"
 
-
-                        var kda = (gamer.kills + gamer.assists) /gamer.deaths
-
-                        if(gamer.deaths == 0){
-                            txtKillPer.text = "Perfact"
-                        }
-                        else {
-                            txtKillPer.text = "${kda}"
-
-                        }
+//                      KDA계산
+//                        var kda = (gamer.kills + gamer.assists) /gamer.deaths
+//
+//                        if(gamer.deaths == 0){
+//                            txtKillPer.text = "Perfact"
+//                        }
+//                        else {
+//                            txtKillPer.text = "KDA ${kda}"
+//
+//                        }
                     }
 
                 }
