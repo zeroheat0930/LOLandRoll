@@ -15,7 +15,6 @@ import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.datas.SummonerResponse
-import com.zeroheat.lolandroll.recyclerview.FirstData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +25,7 @@ class SearchResultActivity : BaseActivity() {
     lateinit var mAdapter: SearchUserrRecyclerAdapter
 
 
-    val mFirstList = ArrayList<FirstData>()
+    val mThisSeansonList = ArrayList<LeagueResponse>()
     val mThisSeasonRankList = ArrayList<LeagueResponse>()
     val mMatchDetailList = ArrayList<MatchDetailData>()
 
@@ -44,7 +43,7 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, summonerInfo.puuid, mFirstList, mThisSeasonRankList, mMatchDetailList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, summonerInfo.puuid, mThisSeansonList, mThisSeasonRankList, mMatchDetailList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 

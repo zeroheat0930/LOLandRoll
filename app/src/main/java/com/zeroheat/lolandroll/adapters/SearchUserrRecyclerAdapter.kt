@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API3List
@@ -27,7 +28,7 @@ class SearchUserrRecyclerAdapter(
     val mContext: Context,
 
     val myPuuId: String,
-    val mFirstList : ArrayList<FirstData>,
+    val mThisSeansonList : ArrayList<LeagueResponse>,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mMatchDetailList : ArrayList<MatchDetailData>,
 
@@ -80,6 +81,7 @@ class SearchUserrRecyclerAdapter(
             val txtWin = itemView.findViewById<TextView>(R.id.txtWin)
             val txtMatchTime = itemView.findViewById<TextView>(R.id.txtMatchTime)
             val txtGameDate = itemView.findViewById<TextView>(R.id.txtGameDate)
+            val imgUsedChamp = itemView.findViewById<ImageView>(R.id.imgUsedChamp)
 
 
             fun bind(data: MatchDetailData) {
@@ -157,9 +159,8 @@ class SearchUserrRecyclerAdapter(
                         }else{
                             txtWin.text = "패"}
 
-
-
-
+//                        사용한 챔피언 이미지
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${gamer.championName}.png").into(imgUsedChamp)
 
 
 //                      킬 데스 어시스트 textview
