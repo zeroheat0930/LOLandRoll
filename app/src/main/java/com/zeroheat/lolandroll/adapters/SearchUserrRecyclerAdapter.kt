@@ -1,30 +1,22 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.MatchDetailData
-import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
 
     val mFirstList : ArrayList<FirstData>,
-    val mSecondList : ArrayList<SecondData>,
+    val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mThirdList : ArrayList<ThirdData>,
 
 
@@ -55,18 +47,18 @@ class SearchUserrRecyclerAdapter(
 
     inner class SecondViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-//        var content: TextView
-//        var image : ImageView
-//
-//
-//            content = itemView.findViewById(R.id.btnRankValue)
-//            content = itemView.findViewById(R.id.txtRankNow)
-//            content = itemView.findViewById(R.id.txtLp)
-//            content = itemView.findViewById(R.id.txtWinLoss)
-//            image = itemView.findViewById(R.id.imgRank)
-//
 
-        fun bind2(data: DataItem) {
+        val txtRankNow = itemView.findViewById<TextView>(R.id.txtRankNow)
+
+        fun bind(rankList: List<LeagueResponse>) {
+
+            if (rankList.isNotEmpty()) {
+
+                val thisSeasonData = rankList[0]
+
+                txtRankNow.text = "${thisSeasonData.tier} ${thisSeasonData.rank}"
+            }
+
         }
 
 
@@ -118,7 +110,7 @@ class SearchUserrRecyclerAdapter(
 
     //  목록이 몇개인지
     override fun getItemCount() =
-        mFirstList.size + mSecondList.size + mThirdList.size // 앞의 두개는 매치 목록이 아님
+        mThirdList.size + 2 // 앞의 두개는 매치 목록이 아님
 
 
     //    위치에 맞는 데이터 추출
@@ -134,14 +126,17 @@ class SearchUserrRecyclerAdapter(
         if (holder.itemViewType == code.ViewType.multi_type2) {
 //            val data2 = mLeagueList[position]
 //            Log.d("data2", data2.toString())
+
+            (holder as SecondViewHolder).bind(mThisSeasonRankList)
+
         }
 //        뷰타입이 3번일때는
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
-            val data = mThirdList[position - 2] // 0,1번째는 다른거니까
-            Log.d("data값", data)
-
-            (holder as ThirdViewHolder).bind3(data)
+//            val data = mThirdList[position - 2] // 0,1번째는 다른거니까
+//            Log.d("data값", data)
+//
+//            (holder as ThirdViewHolder).bind3(data)
 
 
             val retrofit = AsiaServerAPI.getRetrofit(mContext)
