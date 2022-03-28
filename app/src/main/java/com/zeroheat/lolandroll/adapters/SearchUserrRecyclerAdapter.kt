@@ -73,20 +73,61 @@ class SearchUserrRecyclerAdapter(
 
             val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
             val txtKda = itemView.findViewById<TextView>(R.id.txtKda)
+            val txtKillPer = itemView.findViewById<TextView>(R.id.txtKillPer)
 
 
             fun bind(data: MatchDetailData) {
 
-                txtGameMode.text = data.info.gameMode
-                Log.d("이 판 id", data.info.gameId.toString())
+//                게임 모드
+                if (data.info.gameMode == "ARAM"){
+                    txtGameMode.text = "무작위 총력전"
+                }
+                else if(data.info.gameMode == "CLASSIC"){
+                    if(data.info.gameType == "CUSTOM_GAME"){
+                        txtGameMode.text = "사용자 설정 게임"
+                    }
+                    else if(data.info.gameType == "TUTORIAL_GAME"){
+                        txtGameMode.text = "튜토리얼 게임"
+                    }else{
+                        if(data.info.queueId == 400){
+                            txtGameMode.text = "5vs5 솔로랭크"
+                    }else if(data.info.queueId == 440){
+                            txtGameMode.text = "5vs5 자유랭크"
+                        }else if(data.info.queueId == 700){
+                            txtGameMode.text = "격전"
+                        }
+                    }
+
+                }
+                else if(data.info.gameMode == "PRACTICETOOL"){
+                    txtGameMode.text = "연습모드"
+                }
+                else {
+                    txtGameMode.text = data.info.gameMode
+                    // URF, 이벤트맵 같은거는 그냥 gameMode로 나오게 설정.
+                }
+
+
+
 
                 for (gamer in data.info.participants) {
-                    Log.d("이 판 참여자목록", gamer.summonerName)
+//                    Log.d("이 판 참여자목록", gamer.summonerName)
 
                     if (gamer.puuid == myPuuId) {
-                        Log.d("내 라인?", gamer.role)
+//                        Log.d("내 라인?", gamer.role)
 
                         txtKda.text = "${gamer.kills}/${gamer.deaths}/${gamer.assists}"
+
+
+                        var kda = (gamer.kills + gamer.assists) /gamer.deaths
+
+                        if(gamer.deaths == 0){
+                            txtKillPer.text = "Perfact"
+                        }
+                        else {
+                            txtKillPer.text = "${kda}"
+
+                        }
                     }
 
                 }

@@ -11,7 +11,7 @@ class matchInfoData(
     var gameId : Long,
     var gameMode : String,
 //    var gameName : String,
-//    var gameType : String,
+    var gameType : String,
 //    var gameVersion : String,
     var mapId : Int,
     var participants : List<matchPartyPeople>,
