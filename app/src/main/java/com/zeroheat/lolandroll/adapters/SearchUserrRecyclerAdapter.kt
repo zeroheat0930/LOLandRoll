@@ -186,6 +186,11 @@ class SearchUserrRecyclerAdapter(
 //                        }
 
 
+//                        사용한 룬 이미지
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
+
+
 //                        사용한 템 이미지
                         if (gamer.item0 == 0 || gamer.item1 == 0 || gamer.item2 == 0 || gamer.item3 == 0 || gamer.item4 == 0 || gamer.item5 == 0 || gamer.item6 == 0 ){
 //                            mimmap사진만 남기게 하고싶은데...
