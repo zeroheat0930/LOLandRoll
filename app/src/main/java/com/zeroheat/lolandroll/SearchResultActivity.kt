@@ -14,6 +14,7 @@ import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.MatchDetailData
+import com.zeroheat.lolandroll.datas.SdataResponse
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +24,7 @@ class SearchResultActivity : BaseActivity() {
     lateinit var binding: ActivityParcticBinding
 
     lateinit var mAdapter: SearchUserrRecyclerAdapter
+
 
 
     val mThisSeansonList = ArrayList<LeagueResponse>()
@@ -129,7 +131,10 @@ class SearchResultActivity : BaseActivity() {
         getMyLeagueInfoList()
 
         getMy20MatchList()
+
+
     }
+
 
     fun getMyLeagueInfoList() {
 

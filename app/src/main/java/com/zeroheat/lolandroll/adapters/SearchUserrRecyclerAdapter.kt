@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.R
+import com.zeroheat.lolandroll.api.API2List
 import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
-import com.zeroheat.lolandroll.datas.LeagueResponse
-import com.zeroheat.lolandroll.datas.MatchDetailData
-import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.datas.*
 import com.zeroheat.lolandroll.recyclerview.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +23,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+//lateinit var SpellBasic: SpellBasicData
+//lateinit var SpellBasicImage: SpellBasicImageData
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
 
@@ -31,6 +32,7 @@ class SearchUserrRecyclerAdapter(
     val mThisSeansonList : ArrayList<LeagueResponse>,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mMatchDetailList : ArrayList<MatchDetailData>,
+
 
 
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -75,6 +77,7 @@ class SearchUserrRecyclerAdapter(
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
+
             val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
             val txtKda = itemView.findViewById<TextView>(R.id.txtKda)
             val txtKillPer = itemView.findViewById<TextView>(R.id.txtKillPer)
@@ -82,6 +85,17 @@ class SearchUserrRecyclerAdapter(
             val txtMatchTime = itemView.findViewById<TextView>(R.id.txtMatchTime)
             val txtGameDate = itemView.findViewById<TextView>(R.id.txtGameDate)
             val imgUsedChamp = itemView.findViewById<ImageView>(R.id.imgUsedChamp)
+            val imgD = itemView.findViewById<ImageView>(R.id.imgD)
+            val imgF = itemView.findViewById<ImageView>(R.id.imgF)
+            val imgUsedRun1 = itemView.findViewById<ImageView>(R.id.imgUsedRun1)
+            val imgUsedRun2 = itemView.findViewById<ImageView>(R.id.imgUsedRun2)
+            val imgItem1 = itemView.findViewById<ImageView>(R.id.imgItem1)
+            val imgItem2 = itemView.findViewById<ImageView>(R.id.imgItem2)
+            val imgItem3 = itemView.findViewById<ImageView>(R.id.imgItem3)
+            val imgItem4 = itemView.findViewById<ImageView>(R.id.imgItem4)
+            val imgItem5 = itemView.findViewById<ImageView>(R.id.imgItem5)
+            val imgItem6 = itemView.findViewById<ImageView>(R.id.imgItem6)
+            val imgItemWard = itemView.findViewById<ImageView>(R.id.imgItemWard)
 
 
             fun bind(data: MatchDetailData) {
@@ -161,6 +175,31 @@ class SearchUserrRecyclerAdapter(
 
 //                        사용한 챔피언 이미지
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${gamer.championName}.png").into(imgUsedChamp)
+
+//                        if (gamer.summoner1Id.toString() == SpellBasic.id){
+//                            val img = SpellBasicImage.full
+//                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${img}.png").into(imgD)
+//                        }
+//                        if (gamer.summoner2Id.toString() == SpellBasic.id){
+//                            val img = SpellBasicImage.full
+//                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${img}.png").into(imgF)
+//                        }
+
+
+//                        사용한 템 이미지
+                        if (gamer.item0 == 0 || gamer.item1 == 0 || gamer.item2 == 0 || gamer.item3 == 0 || gamer.item4 == 0 || gamer.item5 == 0 || gamer.item6 == 0 ){
+//                            mimmap사진만 남기게 하고싶은데...
+                            return
+                        }else{
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgItem1)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item1}.png").into(imgItem2)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item2}.png").into(imgItem3)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item3}.png").into(imgItem4)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item4}.png").into(imgItem5)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item5}.png").into(imgItem6)
+                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item6}.png").into(imgItemWard)
+                        }
+
 
 
 //                      킬 데스 어시스트 textview
@@ -246,7 +285,18 @@ class SearchUserrRecyclerAdapter(
 
 
                     val retrofit = AsiaServerAPI.getRetrofit(mContext)
-                    val apiList3 = retrofit.create(API3List::class.java)
+                    val apiList2 = retrofit.create(API2List::class.java)
+
+//                    apiList2.summoner().enqueue(object :Callback<SdataResponse>{
+//                        override fun onResponse(call: Call<SdataResponse>, response: Response<SdataResponse>) {
+//                            val spell = response.body()!!
+//
+//                        }
+//
+//                        override fun onFailure(call: Call<SdataResponse>, t: Throwable) {
+//
+//                        }
+//                    })
 
 
                 }
