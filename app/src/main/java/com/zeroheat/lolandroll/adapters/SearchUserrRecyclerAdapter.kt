@@ -15,17 +15,22 @@ import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.datas.SummonerResponse
-import com.zeroheat.lolandroll.recyclerview.DataItem
-import com.zeroheat.lolandroll.recyclerview.code
+import com.zeroheat.lolandroll.recyclerview.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
-    val mRankList: ArrayList<LeagueResponse>,
-    val mLeagueList: ArrayList<LeagueResponse>,
-    val mMatchIdList: List<String>,
+
+    val mFirstList : ArrayList<FirstData>,
+    val mSecondList : ArrayList<SecondData>,
+    val mThirdList : ArrayList<ThirdData>,
+
+
+//    val mRankList: ArrayList<LeagueResponse>,
+//    val mLeagueList: ArrayList<LeagueResponse>,
+//    val mMatchIdList: List<String>,
 
 
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,16 +39,16 @@ class SearchUserrRecyclerAdapter(
     inner class FirstViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-        val btnRank = itemView.findViewById<TextView>(R.id.btnRank)
-
-        fun bind1(leagueList: List<LeagueResponse>) {
-
-            for (league in leagueList) {
-//                첨부된 시즌별 랭크 하나하나를 레이아웃에 addView해준다던지
-            }
-
-
-        }
+//        val btnRank = itemView.findViewById<TextView>(R.id.btnRank)
+//
+//        fun bind1(leagueList: List<LeagueResponse>) {
+//
+//            for (league in leagueList) {
+////                첨부된 시즌별 랭크 하나하나를 레이아웃에 addView해준다던지
+//            }
+//
+//
+//        }
 
 
     }
@@ -71,6 +76,8 @@ class SearchUserrRecyclerAdapter(
         RecyclerView.ViewHolder(itemView) {
 
         val txtGameMode = itemView.findViewById<TextView>(R.id.txtGameMode)
+//        val txtWin = itemView.findViewById<TextView>(R.id.txtWin)
+
 
         fun bind3(data: String) {
 
@@ -111,7 +118,7 @@ class SearchUserrRecyclerAdapter(
 
     //  목록이 몇개인지
     override fun getItemCount() =
-        mRankList.size + mLeagueList.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
+        mFirstList.size + mSecondList.size + mThirdList.size // 앞의 두개는 매치 목록이 아님
 
 
     //    위치에 맞는 데이터 추출
@@ -131,7 +138,7 @@ class SearchUserrRecyclerAdapter(
 //        뷰타입이 3번일때는
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
-            val data = mMatchIdList[position - 2] // 0,1번째는 다른거니까
+            val data = mThirdList[position - 2] // 0,1번째는 다른거니까
             Log.d("data값", data)
 
             (holder as ThirdViewHolder).bind3(data)

@@ -16,6 +16,9 @@ import com.zeroheat.lolandroll.datas.LeagueResponse
 import com.zeroheat.lolandroll.datas.MatchDetailData
 import com.zeroheat.lolandroll.datas.SummonerResponse
 import com.zeroheat.lolandroll.recyclerview.DataItem
+import com.zeroheat.lolandroll.recyclerview.FirstData
+import com.zeroheat.lolandroll.recyclerview.SecondData
+import com.zeroheat.lolandroll.recyclerview.ThirdData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,9 +29,9 @@ class SearchResultActivity : BaseActivity() {
     lateinit var mAdapter: SearchUserrRecyclerAdapter
 
 
-    val mDataItem = ArrayList<LeagueResponse>()
-    val mRankList = ArrayList<LeagueResponse>()
-    val mMatchIdList = ArrayList<String>()
+    val mFirstList = ArrayList<FirstData>()
+    val mSecondList = ArrayList<SecondData>()
+    val mThirdList = ArrayList<ThirdData>()
 
 
     lateinit var summonerInfo : SummonerResponse
@@ -44,11 +47,28 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mFirstList, mSecondList, mThirdList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
 
+
+//        json파싱만 사용해서 데이터 테이블에 넣어보자
+        apiList.getLeague(
+            summonerInfo.id,
+            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3"
+        ).enqueue(object : Callback<List<LeagueResponse>>{
+            override fun onResponse(
+                call: Call<List<LeagueResponse>>,
+                response: Response<List<LeagueResponse>>
+            ) {
+                val list = response.body()!!
+            }
+
+            override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
+
+            }
+        })
 
 
 
@@ -148,17 +168,18 @@ class SearchResultActivity : BaseActivity() {
                                                     }
                                                 })
 
-                                                mMatchIdList.add(matchItem.value.toString())
-//                                                mMatchIdList.clear()
 
+//                                                mMatchIdList.clear()
+                                                mMatchIdList.add(matchItem.value.toString())
+                                                mAdapter.notifyDataSetChanged()
 
                                             }
 
 
 
 
-                                            Log.d("어댑터새로고침확인용", "이벤트확인")
-                                            mAdapter.notifyDataSetChanged()
+
+
 
 
                                         }
