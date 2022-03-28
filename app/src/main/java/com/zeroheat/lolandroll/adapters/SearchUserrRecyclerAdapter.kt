@@ -23,84 +23,77 @@ import retrofit2.Response
 
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
-    val mRankList: ArrayList<DataItem>,
-    val mDataItem: ArrayList<LeagueResponse>,
+    val mRankList: ArrayList<LeagueResponse>,
+    val mLeagueList: ArrayList<LeagueResponse>,
     val mMatchIdList: List<String>,
 
-    var summonerInfo : SummonerResponse,
-
-
-    //    멤버변수로 RealtimeDb에 연결
-    val realtimeDB: FirebaseDatabase = FirebaseDatabase.getInstance("https://lolandroll-543b4-default-rtdb.firebaseio.com/")
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
 
     inner class FirstViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
 
-        init {
-            content = itemView.findViewById(R.id.btnRank)
+        val btnRank = itemView.findViewById<TextView>(R.id.btnRank)
+
+        fun bind1(data1: LeagueResponse){
+            btnRank.text = data1.tier
         }
+
 
     }
     inner class SecondViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content: TextView
-        var image : ImageView
+//        var content: TextView
+//        var image : ImageView
+//
+//
+//            content = itemView.findViewById(R.id.btnRankValue)
+//            content = itemView.findViewById(R.id.txtRankNow)
+//            content = itemView.findViewById(R.id.txtLp)
+//            content = itemView.findViewById(R.id.txtWinLoss)
+//            image = itemView.findViewById(R.id.imgRank)
+//
 
-        init {
-            content = itemView.findViewById(R.id.btnRankValue)
-            content = itemView.findViewById(R.id.txtRankNow)
-            content = itemView.findViewById(R.id.txtLp)
-            content = itemView.findViewById(R.id.txtWinLoss)
-            image = itemView.findViewById(R.id.imgRank)
+        fun bind2(data: DataItem) {
         }
 
-        fun bind(data: DataItem) {
 
-        }
+
 
     }
     inner class ThirdViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var content1: TextView
-        var content2: TextView
-        var content3: TextView
-        var content4: TextView
-        var content5: TextView
-        var content6: TextView
 
-        var image: ImageView
+        val txtStartPlaceName = itemView.findViewById<TextView>(R.id.txtWin)
 
-        init {
-            content1 = itemView.findViewById(R.id.txtWin)
-            content2 = itemView.findViewById(R.id.txtMatchTime)
-            content3 = itemView.findViewById(R.id.txtKda)
-            content4 = itemView.findViewById(R.id.txtKillPer)
-            content5 = itemView.findViewById(R.id.txtGameMode)
-            content6 = itemView.findViewById(R.id.txtGameDate)
-            image = itemView.findViewById(R.id.imgUsedChamp)
-            image = itemView.findViewById(R.id.imgD)
-            image = itemView.findViewById(R.id.imgF)
-            image = itemView.findViewById(R.id.imgUsedRun1)
-            image = itemView.findViewById(R.id.imgUsedRun2)
-            image = itemView.findViewById(R.id.imgItem1)
-            image = itemView.findViewById(R.id.imgItem2)
-            image = itemView.findViewById(R.id.imgItem3)
-            image = itemView.findViewById(R.id.imgItem4)
-            image = itemView.findViewById(R.id.imgItem5)
-            image = itemView.findViewById(R.id.imgItem6)
-            image = itemView.findViewById(R.id.imgItemWard)
+
+//            content1 = itemView.findViewById(R.id.txtWin)
+//            content2 = itemView.findViewById(R.id.txtMatchTime)
+//            content3 = itemView.findViewById(R.id.txtKda)
+//            content4 = itemView.findViewById(R.id.txtKillPer)
+//            content5 = itemView.findViewById(R.id.txtGameMode)
+//            content6 = itemView.findViewById(R.id.txtGameDate)
+//            image = itemView.findViewById(R.id.imgUsedChamp)
+//            image = itemView.findViewById(R.id.imgD)
+//            image = itemView.findViewById(R.id.imgF)
+//            image = itemView.findViewById(R.id.imgUsedRun1)
+//            image = itemView.findViewById(R.id.imgUsedRun2)
+//            image = itemView.findViewById(R.id.imgItem1)
+//            image = itemView.findViewById(R.id.imgItem2)
+//            image = itemView.findViewById(R.id.imgItem3)
+//            image = itemView.findViewById(R.id.imgItem4)
+//            image = itemView.findViewById(R.id.imgItem5)
+//            image = itemView.findViewById(R.id.imgItem6)
+//            image = itemView.findViewById(R.id.imgItemWard)
 
 
 
-            fun bind(data: String) {
+            fun bind3(data: String) {
 
-
+                txtStartPlaceName.text = data
             }
-        }
+
 
 
     }
@@ -115,6 +108,7 @@ class SearchUserrRecyclerAdapter(
             }
         }
 
+//    어떤 xml을 inflate해서 사용할건지
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
         val context = mContext
@@ -132,20 +126,56 @@ class SearchUserrRecyclerAdapter(
 
     }
 
+//  목록이 몇개인지
+    override fun getItemCount() = mRankList.size + mLeagueList.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
 
-    override fun getItemCount() = mRankList.size + mDataItem.size + mMatchIdList.size // 앞의 두개는 매치 목록이 아님
 
+
+//    위치에 맞는 데이터 추출
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
+
+//        뷰타입이 1번일때는
+        if (holder.itemViewType == code.ViewType.multi_type1){
+            val data1 = mRankList[position]
+
+        }
+//        뷰타입이 2번일때는
+        if (holder.itemViewType == code.ViewType.multi_type2){
+            val data2 = mLeagueList[position]
+            Log.d("data2", data2.toString())
+        }
 //        뷰타입이 3번일때는
 
         if (holder.itemViewType == code.ViewType.multi_type3) {
-            val data = mMatchIdList[position-2] // 0,1번째는 다른거니까
+            val data = mMatchIdList[position] // 0,1번째는 다른거니까
             Log.d("data값", data)
+
 
 
             val retrofit = AsiaServerAPI.getRetrofit(mContext)
             val apiList3 = retrofit.create(API3List::class.java)
+
+//            apiList3.getMatchDetail(
+//                data,
+//                "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
+//                Callback<MatchDetailData> {
+//                override fun onResponse(
+//                    call: Call<MatchDetailData>,
+//                    response: Response<MatchDetailData>
+//                ) {
+//                    val b = response.body()!!
+//                    Log.d("왜안되는건데", b.toString())
+//
+//                }
+//
+//                override fun onFailure(
+//                    call: Call<MatchDetailData>,
+//                    t: Throwable
+//                ) {
+//
+//                }
+//            })
 
 
 

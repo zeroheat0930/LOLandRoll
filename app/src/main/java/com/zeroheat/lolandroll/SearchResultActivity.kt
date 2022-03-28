@@ -26,7 +26,7 @@ class SearchResultActivity : BaseActivity() {
     lateinit var mAdapter: SearchUserrRecyclerAdapter
 
 
-    val mDataItem = ArrayList<DataItem>()
+    val mDataItem = ArrayList<LeagueResponse>()
     val mRankList = ArrayList<LeagueResponse>()
     val mMatchIdList = ArrayList<String>()
 
@@ -44,15 +44,20 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList, summonerInfo)
+        mAdapter = SearchUserrRecyclerAdapter(mContext, mDataItem, mRankList, mMatchIdList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
+
+
+
+
+
 
 
 //                  성공하면 소환사 랭크 리그 정보를 넣어줌.
         apiList.getLeague(
             summonerInfo.id,
-            "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa"
+            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3"
         ).enqueue(object: Callback<List<LeagueResponse>> {
             override fun onResponse(
                 call: Call<List<LeagueResponse>>,
@@ -63,9 +68,11 @@ class SearchResultActivity : BaseActivity() {
                 if(list.size != 0 ) {
                     realtimeDB.getReference("League").child(summonerInfo.name)
                         .setValue(list[0])
+
+                    mMatchIdList.add(list[0].leagueId)
                 }
 
-                //                                데이터베이스에 puuid를 꺼내옴.
+//                                데이터베이스에 puuid를 꺼내옴.
                 realtimeDB.getReference("Summoner").addValueEventListener(object :
                     ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -76,7 +83,7 @@ class SearchResultActivity : BaseActivity() {
                         apiList3.getMatch(
                             value,
                             "20",
-                            "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa")
+                            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3")
                             .enqueue(object : Callback<List<String>> {
                                 override fun onResponse(
                                     call: Call<List<String>>,
@@ -96,7 +103,7 @@ class SearchResultActivity : BaseActivity() {
 
                                                 apiList3.getMatchDetail(
                                                     matchItem.value.toString(),
-                                                    "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :
+                                                    "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3").enqueue(object :
                                                     Callback<MatchDetailData> {
                                                     override fun onResponse(
                                                         call: Call<MatchDetailData>,
@@ -104,17 +111,17 @@ class SearchResultActivity : BaseActivity() {
                                                     ) {
                                                         val b = response.body()!!
 
-                                                        Log.d("b", b.toString())
+//                                                        Log.d("b", b.toString())
                                                         realtimeDB.getReference("MatchDetail").child(summonerInfo.name).setValue(b)
 
                                                         realtimeDB.getReference("MatchDetail").addValueEventListener(object : ValueEventListener{
                                                             override fun onDataChange(snapshot: DataSnapshot) {
-                                                                for (matchItem in snapshot.child(summonerInfo.name).children) {
-                                                                    Log.d("무슨목록?",
-                                                                        matchItem.value.toString()
-                                                                    )
+                                                                val abab = snapshot.child(summonerInfo.name).child("info").child("participants")
 
-                                                                }
+
+
+
+
                                                             }
 
                                                             override fun onCancelled(error: DatabaseError) {
@@ -132,8 +139,9 @@ class SearchResultActivity : BaseActivity() {
                                                     }
                                                 })
 
-//                                                mMatchIdList.clear()
                                                 mMatchIdList.add(matchItem.value.toString())
+//                                                mMatchIdList.clear()
+
 
                                             }
 

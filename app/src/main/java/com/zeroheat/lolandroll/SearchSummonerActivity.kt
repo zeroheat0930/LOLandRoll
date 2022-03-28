@@ -101,7 +101,7 @@ class SearchSummonerActivity : BaseActivity() {
 //          소환사 이름대면 검색결과가 나옴.
             apiList.getsummoner(
                 inputSummonerName,
-                "RGAPI-bb301326-0c05-4b58-a7c1-80fe997968aa").enqueue(object :Callback<SummonerResponse>{
+                "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3").enqueue(object :Callback<SummonerResponse>{
                 override fun onResponse(
                     call: Call<SummonerResponse>,
                     response: Response<SummonerResponse>
