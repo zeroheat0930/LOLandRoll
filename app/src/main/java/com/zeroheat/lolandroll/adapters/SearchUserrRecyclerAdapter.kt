@@ -197,6 +197,7 @@ class SearchUserrRecyclerAdapter(
                         Log.d("item0", gamer.perks.styles[0].selections[0].perk.toString())
                         Log.d("item0", gamer.perks.styles[1].style.toString())
 
+                        Log.d("213", g)
 
 
 
