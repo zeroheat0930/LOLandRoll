@@ -26,15 +26,15 @@ class SearchResultActivity : BaseActivity() {
     lateinit var mAdapter: SearchUserrRecyclerAdapter
 
 
-    val mMainList = ArrayList<SummonerResponse>()
     val mThisSeasonRankList = ArrayList<LeagueResponse>()
     val mMatchDetailList = ArrayList<MatchDetailData>()
 
+    lateinit var summonerInfo : SummonerResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parctic)
-//        summonerInfo = intent.getSerializableExtra("summoner") as SummonerResponse
+        summonerInfo = intent.getSerializableExtra("summoner") as SummonerResponse
         setupEvents()
         setValues()
         getSupportActionBar()?.hide()
@@ -42,7 +42,7 @@ class SearchResultActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        mAdapter = SearchUserrRecyclerAdapter(mContext,mMainList, mThisSeasonRankList, mMatchDetailList,mMainList[0].puuid )
+        mAdapter = SearchUserrRecyclerAdapter(mContext,summonerInfo.puuid, summonerInfo, mThisSeasonRankList, mMatchDetailList)
         binding.threeRecycle.adapter = mAdapter
         binding.threeRecycle.layoutManager = LinearLayoutManager(mContext)
 
@@ -63,32 +63,7 @@ class SearchResultActivity : BaseActivity() {
 
     fun getMyMainInfoList(){
         val a = intent.getStringExtra("Name")
-        //          소환사 이름대면 검색결과가 나옴.
-        apiList.getsummoner(
-            a!!,
-            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76").enqueue(object :Callback<SummonerResponse>{
-            override fun onResponse(
-                call: Call<SummonerResponse>,
-                response: Response<SummonerResponse>
-            ) {
-                if (response.isSuccessful){
-                    val br = response.body()!!
-                    Log.d("성공", br.toString())
-                    mMainList.clear()
-                    mMainList.addAll(listOf(br))
 
-                    mAdapter.notifyDataSetChanged()
-
-                }
-                else{
-                    Toast.makeText(mContext,"등록되지 않은 소환사 입니다.", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onFailure(call: Call<SummonerResponse>, t: Throwable) {
-
-            }
-        })
     }
 
     fun getMyLeagueInfoList() {
@@ -96,7 +71,7 @@ class SearchResultActivity : BaseActivity() {
 
 //        json파싱만 사용해서 데이터 테이블에 넣어보자
         apiList.getLeague(
-            mMainList[0].id,
+            summonerInfo.id,
             "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
         ).enqueue(object : Callback<List<LeagueResponse>> {
             override fun onResponse(
@@ -121,7 +96,7 @@ class SearchResultActivity : BaseActivity() {
     fun getMy30MatchList() {
 
         apiList3.getMatch(
-            mMainList[0].puuid,
+            summonerInfo.puuid,
             "30",
             "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
         )

@@ -1,7 +1,6 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
-import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +9,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.database.FirebaseDatabase
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API2List
-import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.*
 import com.zeroheat.lolandroll.recyclerview.*
 import com.zeroheat.lolandroll.utils.SpellDataUtil
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -29,9 +23,8 @@ import kotlin.collections.ArrayList
 //lateinit var SpellBasicImage: SpellBasicImageData
 class SearchUserrRecyclerAdapter(
     val mContext: Context,
-
     val myPuuId: String,
-    val mMainList : ArrayList<SummonerResponse>,
+    val mSummonerData : SummonerResponse,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mMatchDetailList : ArrayList<MatchDetailData>,
 
@@ -323,8 +316,7 @@ class SearchUserrRecyclerAdapter(
 
 //        뷰타입이 1번일때는
                 if (holder.itemViewType == code.ViewType.multi_type1) {
-            val data1 = mMainList[position]
-                    (holder as FirstViewHolder).bind(data1)
+                    (holder as FirstViewHolder).bind(mSummonerData)
 
                 }
 //        뷰타입이 2번일때는

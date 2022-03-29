@@ -41,11 +41,34 @@ class SearchSummonerActivity : BaseActivity() {
 
 
             var inputSummonerName = binding.edtSearch.text.toString()
-            //                        성공하면 화면넘어감
-            val myIntent = Intent(mContext, SearchResultActivity::class.java)
-            myIntent.putExtra("Name", inputSummonerName)
-            startActivity(myIntent)
 
+            //          소환사 이름대면 검색결과가 나옴.
+            apiList.getsummoner(
+                inputSummonerName!!,
+                "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76").enqueue(object :Callback<SummonerResponse>{
+                override fun onResponse(
+                    call: Call<SummonerResponse>,
+                    response: Response<SummonerResponse>
+                ) {
+                    if (response.isSuccessful){
+                        val br = response.body()!!
+                        Log.d("성공", br.toString())
+                        //                        성공하면 화면넘어감
+                        val myIntent = Intent(mContext, SearchResultActivity::class.java)
+                        myIntent.putExtra("summoner", br)
+                        startActivity(myIntent)
+
+
+                    }
+                    else{
+                        Toast.makeText(mContext,"등록되지 않은 소환사 입니다.", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<SummonerResponse>, t: Throwable) {
+
+                }
+            })
 
 
             handled
