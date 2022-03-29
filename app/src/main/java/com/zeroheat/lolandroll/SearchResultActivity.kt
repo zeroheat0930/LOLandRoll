@@ -142,7 +142,7 @@ class SearchResultActivity : BaseActivity() {
 //        json파싱만 사용해서 데이터 테이블에 넣어보자
         apiList.getLeague(
             summonerInfo.id,
-            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3"
+            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
         ).enqueue(object : Callback<List<LeagueResponse>> {
             override fun onResponse(
                 call: Call<List<LeagueResponse>>,
@@ -168,7 +168,7 @@ class SearchResultActivity : BaseActivity() {
         apiList3.getMatch(
             summonerInfo.puuid,
             "20",
-            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3"
+            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
         )
             .enqueue(object : Callback<List<String>> {
                 override fun onResponse(
@@ -182,19 +182,29 @@ class SearchResultActivity : BaseActivity() {
 
                         apiList3.getMatchDetail(
                             matchId,
-                            "RGAPI-25102a0e-d805-443c-8449-e51b6a10f4c3"
+                            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
                         ).enqueue(object :
                             Callback<MatchDetailData> {
                             override fun onResponse(
                                 call: Call<MatchDetailData>,
                                 response: Response<MatchDetailData>
                             ) {
-                                val matchDetail = response.body()!!
 
-                                Log.d("matchDetail", matchDetail.toString())
+                                response.body()?.let{
+                                    val matchDetail = response.body()!!
 
-                                mMatchDetailList.add(matchDetail)
-                                mAdapter.notifyDataSetChanged()
+                                    Log.d("matchDetail", matchDetail.toString())
+
+                                    mMatchDetailList.add(matchDetail)
+
+                                    mMatchDetailList.sortByDescending {
+                                        it.info.gameStartTimestamp
+                                    }
+
+
+                                    mAdapter.notifyDataSetChanged()
+                                }
+
                             }
 
                             override fun onFailure(

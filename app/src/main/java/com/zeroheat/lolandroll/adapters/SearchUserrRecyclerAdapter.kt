@@ -16,6 +16,7 @@ import com.zeroheat.lolandroll.api.API3List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.*
 import com.zeroheat.lolandroll.recyclerview.*
+import com.zeroheat.lolandroll.utils.SpellDataUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -135,7 +136,7 @@ class SearchUserrRecyclerAdapter(
                 var seco = data.info.gameDuration - (60*mini)
                 Log.d("초", seco.toString())
 //                남는부분 0채우는법
-                txtMatchTime.text = "${mini}분 ${seco}초"
+                txtMatchTime.text = "${String.format("%02d", mini)}분 ${ String.format("%02d", seco) }초"
 
 
 //              게임날자 textview
@@ -176,6 +177,16 @@ class SearchUserrRecyclerAdapter(
 //                        사용한 챔피언 이미지
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${gamer.championName}.png").into(imgUsedChamp)
 
+                        val imgDUrl = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${SpellDataUtil.spellHashMap[gamer.summoner1Id]}.png"
+                        Log.d("D스펠", imgDUrl)
+                        Log.d("summonerId", gamer.summoner1Id.toString())
+                        val imgFUrl = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${SpellDataUtil.spellHashMap[gamer.summoner2Id]}.png"
+                        Log.d("F스펠", imgFUrl)
+                        Log.d("summonerId", gamer.summoner2Id.toString())
+                        Glide.with(mContext).load(imgDUrl).into(imgD)
+                        Glide.with(mContext).load(imgFUrl).into(imgF)
+//                        Glide.with(mContext).load(SpellDataUtil.spellHashMap[gamer.summoner2Id]).into(imgF)
+
 //                        if (gamer.summoner1Id.toString() == SpellBasic.id){
 //                            val img = SpellBasicImage.full
 //                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${img}.png").into(imgD)
@@ -191,19 +202,60 @@ class SearchUserrRecyclerAdapter(
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
 
 
-//                        사용한 템 이미지
-                        if (gamer.item0 == 0 || gamer.item1 == 0 || gamer.item2 == 0 || gamer.item3 == 0 || gamer.item4 == 0 || gamer.item5 == 0 || gamer.item6 == 0 ){
-//                            mimmap사진만 남기게 하고싶은데...
-                            return
-                        }else{
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgItem1)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item1}.png").into(imgItem2)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item2}.png").into(imgItem3)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item3}.png").into(imgItem4)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item4}.png").into(imgItem5)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item5}.png").into(imgItem6)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item6}.png").into(imgItemWard)
+
+//                        사용한 템1 이미지
+                        if (gamer.item0 != 0) {
+//                            아이템이미지
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgItem1)
                         }
+                        else {
+//                            기본이미지
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem1)
+                        }
+//                        사용한 템2 이미지
+                        if (gamer.item1 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item1}.png").into(imgItem2)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem2)
+                        }
+//                        사용한 템3 이미지
+                        if (gamer.item2 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item2}.png").into(imgItem3)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem3)
+                        }
+//                        사용한 템4 이미지
+                        if (gamer.item3 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item3}.png").into(imgItem4)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem4)
+                        }
+//                        사용한 템5 이미지
+                        if (gamer.item4 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item4}.png").into(imgItem5)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem5)
+                        }
+//                        사용한 템6 이미지
+                        if (gamer.item5 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item5}.png").into(imgItem6)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem6)
+                        }
+//                        사용한 와드 이미지
+                        if (gamer.item6 != 0) {
+                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item6}.png").into(imgItemWard)
+                        }
+                        else {
+                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItemWard)
+                        }
+
+
 
 
 
@@ -211,15 +263,15 @@ class SearchUserrRecyclerAdapter(
                         txtKda.text = "${gamer.kills}/${gamer.deaths}/${gamer.assists}"
 
 //                      KDA계산
-//                        var kda = (gamer.kills + gamer.assists) /gamer.deaths
-//
-//                        if(gamer.deaths == 0){
-//                            txtKillPer.text = "Perfact"
-//                        }
-//                        else {
-//                            txtKillPer.text = "KDA ${kda}"
-//
-//                        }
+
+                        if(gamer.deaths == 0){
+                            txtKillPer.text = "Perfact"
+                        }
+                        else {
+                            var kda = (gamer.kills + gamer.assists) /gamer.deaths
+                            txtKillPer.text = "KDA ${kda}"
+
+                        }
                     }
 
                 }
@@ -229,8 +281,7 @@ class SearchUserrRecyclerAdapter(
 
     override fun getItemViewType(position: Int): Int {
 
-//            홀수줄 : 데이터목록
-//            짝수줄 : 챔프목록
+
                 return when (position) {
                     0 -> code.ViewType.multi_type1
                     1 -> code.ViewType.multi_type2
