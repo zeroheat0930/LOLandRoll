@@ -10,7 +10,6 @@
         android:layout_width="0dp"
         android:layout_weight="0.15"
         android:layout_height="match_parent"
-        android:padding="2dp"
         android:gravity="center"
         android:orientation="vertical">
         <TextView
@@ -18,11 +17,13 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="승"/>
         <TextView
             android:textColor="@color/white"
             android:id="@+id/txtMatchTime"
             android:textSize="10sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="26:09"/>
@@ -102,10 +103,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:text="5/10/42" />
 
                     <TextView
                         android:id="@+id/txtKillPer"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="킬 관여 59%" />
@@ -182,6 +186,7 @@
         <TextView
             android:id="@+id/txtGameMode"
             android:textSize="12sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="무작위 총력전"/>

@@ -66,7 +66,13 @@ class SearchUserrRecyclerAdapter(
         RecyclerView.ViewHolder(itemView) {
 
 
+        val btnRankValue = itemView.findViewById<TextView>(R.id.btnRankValue)
         val txtRankNow = itemView.findViewById<TextView>(R.id.txtRankNow)
+        val txtLp = itemView.findViewById<TextView>(R.id.txtLp)
+        val txtWinLoss = itemView.findViewById<TextView>(R.id.txtWinLoss)
+
+        val imgRank = itemView.findViewById<ImageView>(R.id.imgRank)
+
 
         fun bind(rankList: List<LeagueResponse>) {
 
@@ -74,7 +80,51 @@ class SearchUserrRecyclerAdapter(
 
                 val thisSeasonData = rankList[0]
 
+                if (thisSeasonData.queueType == "RANKED_SOLO_5x5"){
+                    btnRankValue.text = "개인/2인 랭크"
+                }
+                if (thisSeasonData.tier == "CHALLENGER"){
+                    Glide.with(mContext).load(R.drawable.emblem_challenger).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "GRANDMASTER"){
+                    Glide.with(mContext).load(R.drawable.emblem_grandmaster).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "MASTER"){
+                    Glide.with(mContext).load(R.drawable.emblem_master).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "DIAMOND"){
+                    Glide.with(mContext).load(R.drawable.emblem_diamond).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "PLATINUM"){
+                    Glide.with(mContext).load(R.drawable.emblem_platinum).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "GOLD"){
+                    Glide.with(mContext).load(R.drawable.emblem_gold).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "SILVER"){
+                    Glide.with(mContext).load(R.drawable.emblem_silver).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "BRONZE"){
+                    Glide.with(mContext).load(R.drawable.emblem_bronze).into(imgRank)
+                }
+                else if (thisSeasonData.tier == "iron"){
+                    Glide.with(mContext).load(R.drawable.emblem_iron).into(imgRank)
+                }
+                else {
+                    Glide.with(mContext).load(R.drawable.emblem_unrank).into(imgRank)
+                }
+
+
+
                 txtRankNow.text = "${thisSeasonData.tier} ${thisSeasonData.rank}"
+
+                txtLp.text = "${thisSeasonData.leaguePoints} LP"
+
+                val x = thisSeasonData.wins
+                val y = thisSeasonData.losses
+                val z = ((x.toDouble()/(x.toDouble()+y.toDouble()))*100).toInt()
+                txtWinLoss.text = "${x}승 ${y}패 (${z}%)"
+
             }
 
 
@@ -190,14 +240,6 @@ class SearchUserrRecyclerAdapter(
                             txtWin.text = "패"
                             linearColor.setBackgroundColor(Color.parseColor("#E24C4D"))
                         }
-
-//                      이겻을때 블루 졋을때 레드
-//                        if(txtWin.text == "승"){
-//
-//                        }else{
-//
-//                        }
-
 
 
 

@@ -11,9 +11,10 @@
             android:gravity="center">
             <ImageView
                 android:id="@+id/imgRank"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/emblem_unrank"/>
         </LinearLayout>
 
     <LinearLayout
@@ -26,14 +27,19 @@
             android:id="@+id/btnRankValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/opggcolor"
             android:text="개인/2인 랭크"/>
         <TextView
             android:id="@+id/txtRankNow"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Unranked"/>
         <TextView
             android:id="@+id/txtLp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 LP"/>
