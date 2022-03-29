@@ -156,7 +156,7 @@ class SearchUserrRecyclerAdapter(
                     txtGameDate.text = "${diffDay}일 전"
                 }
                 else {
-                    val sdf = SimpleDateFormat("M월 d일 a h시 m분")
+                    val sdf = SimpleDateFormat("M월 d일")
 //            10일 이상 : sdf로 가공해서 리턴.
                     txtGameDate.text = sdf.format(data.info.gameStartTimestamp)
                 }

@@ -24,7 +24,7 @@ class ServerAPI1 {
 //               Date 자료형으로 파싱 => String을 yyyy-MM-dd HH:mm:ss 으로 파싱해서 저장해야함. (고정된 양식으로 내려줌)
 
             val gson = GsonBuilder()
-                .setDateFormat("M월 d일 a h시 m분")  // 서버가 이런 양식으로 보내주는 String을
+                .setDateFormat("M월 d일")  // 서버가 이런 양식으로 보내주는 String을
                 .registerTypeAdapter(
                     Date::class.java,
                     DateDeserializer()
