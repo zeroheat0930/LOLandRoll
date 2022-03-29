@@ -136,7 +136,7 @@ class SearchUserrRecyclerAdapter(
                 var seco = data.info.gameDuration - (60*mini)
                 Log.d("초", seco.toString())
 //                남는부분 0채우는법
-                txtMatchTime.text = "${String.format("%02d", mini)}분 ${ String.format("%02d", seco) }초"
+                txtMatchTime.text = "${String.format("%02d", mini)}:${ String.format("%02d", seco)}"
 
 
 //              게임날자 textview
@@ -260,7 +260,7 @@ class SearchUserrRecyclerAdapter(
 
 
 //                      킬 데스 어시스트 textview
-                        txtKda.text = "${gamer.kills}/${gamer.deaths}/${gamer.assists}"
+                        txtKda.text = "${gamer.kills} / ${gamer.deaths} / ${gamer.assists}"
 
 //                      KDA계산
 

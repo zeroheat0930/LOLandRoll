@@ -130,7 +130,7 @@ class SearchResultActivity : BaseActivity() {
 
         getMyLeagueInfoList()
 
-        getMy20MatchList()
+        getMy30MatchList()
 
 
     }
@@ -163,11 +163,11 @@ class SearchResultActivity : BaseActivity() {
 
     }
 
-    fun getMy20MatchList() {
+    fun getMy30MatchList() {
 
         apiList3.getMatch(
             summonerInfo.puuid,
-            "20",
+            "30",
             "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
         )
             .enqueue(object : Callback<List<String>> {
