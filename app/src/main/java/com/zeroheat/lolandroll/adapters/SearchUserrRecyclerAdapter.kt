@@ -1,6 +1,7 @@
 package com.zeroheat.lolandroll.adapters
 
 import android.content.Context
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +31,7 @@ class SearchUserrRecyclerAdapter(
     val mContext: Context,
 
     val myPuuId: String,
-    val mThisSeansonList : ArrayList<LeagueResponse>,
+    val mMainList : ArrayList<SummonerResponse>,
     val mThisSeasonRankList : ArrayList<LeagueResponse>,
     val mMatchDetailList : ArrayList<MatchDetailData>,
 
@@ -42,16 +43,20 @@ class SearchUserrRecyclerAdapter(
     inner class FirstViewHolder internal constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-//        val btnRank = itemView.findViewById<TextView>(R.id.btnRank)
-//
-//        fun bind1(leagueList: List<LeagueResponse>) {
-//
-//            for (league in leagueList) {
-////                첨부된 시즌별 랭크 하나하나를 레이아웃에 addView해준다던지
-//            }
-//
-//
-//        }
+        val txtUserName = itemView.findViewById<TextView>(R.id.txtUserName)
+        val txtUserLevel = itemView.findViewById<TextView>(R.id.txtUserLevel)
+        val imgChamp = itemView.findViewById<ImageView>(R.id.imgChamp)
+
+
+        fun bind(data: SummonerResponse) {
+
+        txtUserName.text = "${data.name}"
+        txtUserLevel.text = "${data.summonerLevel}"
+
+        Glide.with(mContext).load("https://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${data.profileIconId}.png").into(imgChamp)
+
+
+        }
 
 
     }
@@ -318,7 +323,8 @@ class SearchUserrRecyclerAdapter(
 
 //        뷰타입이 1번일때는
                 if (holder.itemViewType == code.ViewType.multi_type1) {
-//            val data1 = mRankList[position]
+            val data1 = mMainList[position]
+                    (holder as FirstViewHolder).bind(data1)
 
                 }
 //        뷰타입이 2번일때는
