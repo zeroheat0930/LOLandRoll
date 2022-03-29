@@ -106,18 +106,23 @@ class SearchUserrRecyclerAdapter(
                     txtGameMode.text = "무작위 총력전"
                 }
                 else if(data.info.gameMode == "CLASSIC"){
+
                     if(data.info.gameType == "CUSTOM_GAME"){
                         txtGameMode.text = "사용자 설정 게임"
                     }
                     else if(data.info.gameType == "TUTORIAL_GAME"){
                         txtGameMode.text = "튜토리얼 게임"
                     }else{
-                        if(data.info.queueId == 400){
-                            txtGameMode.text = "5vs5 솔로랭크"
-                    }else if(data.info.queueId == 440){
-                            txtGameMode.text = "5vs5 자유랭크"
+                        if(data.info.queueId == 420){
+                            txtGameMode.text = "개인/듀오"
+                        }else if(data.info.queueId == 430){
+                            txtGameMode.text = "일반게임"
+                        }else if(data.info.queueId == 440){
+                            txtGameMode.text = "자유랭크"
                         }else if(data.info.queueId == 700){
                             txtGameMode.text = "격전"
+                        }else{
+                            txtGameMode.text = data.info.gameMode
                         }
                     }
 
@@ -178,23 +183,14 @@ class SearchUserrRecyclerAdapter(
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${gamer.championName}.png").into(imgUsedChamp)
 
                         val imgDUrl = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${SpellDataUtil.spellHashMap[gamer.summoner1Id]}.png"
-                        Log.d("D스펠", imgDUrl)
-                        Log.d("summonerId", gamer.summoner1Id.toString())
+//                        Log.d("D스펠", imgDUrl)
+//                        Log.d("summonerId", gamer.summoner1Id.toString())
                         val imgFUrl = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/${SpellDataUtil.spellHashMap[gamer.summoner2Id]}.png"
-                        Log.d("F스펠", imgFUrl)
-                        Log.d("summonerId", gamer.summoner2Id.toString())
+//                        Log.d("F스펠", imgFUrl)
+//                        Log.d("summonerId", gamer.summoner2Id.toString())
                         Glide.with(mContext).load(imgDUrl).into(imgD)
                         Glide.with(mContext).load(imgFUrl).into(imgF)
-//                        Glide.with(mContext).load(SpellDataUtil.spellHashMap[gamer.summoner2Id]).into(imgF)
 
-//                        if (gamer.summoner1Id.toString() == SpellBasic.id){
-//                            val img = SpellBasicImage.full
-//                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${img}.png").into(imgD)
-//                        }
-//                        if (gamer.summoner2Id.toString() == SpellBasic.id){
-//                            val img = SpellBasicImage.full
-//                            Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${img}.png").into(imgF)
-//                        }
 
 
 //                        사용한 룬 이미지
