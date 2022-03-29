@@ -2,15 +2,9 @@ package com.zeroheat.lolandroll
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.adapters.SearchUserrRecyclerAdapter
 import com.zeroheat.lolandroll.databinding.ActivityParcticBinding
 import com.zeroheat.lolandroll.datas.LeagueResponse
@@ -72,7 +66,7 @@ class SearchResultActivity : BaseActivity() {
 //        json파싱만 사용해서 데이터 테이블에 넣어보자
         apiList.getLeague(
             summonerInfo.id,
-            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
+            "RGAPI-013563f9-0770-4fbf-9152-a458e1172f99"
         ).enqueue(object : Callback<List<LeagueResponse>> {
             override fun onResponse(
                 call: Call<List<LeagueResponse>>,
@@ -87,7 +81,7 @@ class SearchResultActivity : BaseActivity() {
             }
 
             override fun onFailure(call: Call<List<LeagueResponse>>, t: Throwable) {
-
+                Toast.makeText(mContext,"전적 검색 API서버 점검중입니다.", Toast.LENGTH_LONG).show()
             }
         })
 
@@ -98,7 +92,7 @@ class SearchResultActivity : BaseActivity() {
         apiList3.getMatch(
             summonerInfo.puuid,
             "30",
-            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
+            "RGAPI-013563f9-0770-4fbf-9152-a458e1172f99"
         )
             .enqueue(object : Callback<List<String>> {
                 override fun onResponse(
@@ -112,7 +106,7 @@ class SearchResultActivity : BaseActivity() {
 
                         apiList3.getMatchDetail(
                             matchId,
-                            "RGAPI-9bf477d4-f348-4c9f-86ad-509cc1f62d76"
+                            "RGAPI-013563f9-0770-4fbf-9152-a458e1172f99"
                         ).enqueue(object :
                             Callback<MatchDetailData> {
                             override fun onResponse(
@@ -141,7 +135,7 @@ class SearchResultActivity : BaseActivity() {
                                 call: Call<MatchDetailData>,
                                 t: Throwable
                             ) {
-
+                                Toast.makeText(mContext,"전적 검색 API서버 점검중입니다.", Toast.LENGTH_LONG).show()
                             }
                         })
                     }
@@ -152,7 +146,7 @@ class SearchResultActivity : BaseActivity() {
                     call: Call<List<String>>,
                     t: Throwable
                 ) {
-
+                    Toast.makeText(mContext,"전적 검색 API서버 점검중입니다.", Toast.LENGTH_LONG).show()
                 }
 
             })

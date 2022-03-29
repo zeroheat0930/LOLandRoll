@@ -3,14 +3,10 @@ package com.zeroheat.lolandroll.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.text.Layout
-import android.text.style.BackgroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageSwitcher
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -19,13 +15,14 @@ import com.bumptech.glide.Glide
 import com.zeroheat.lolandroll.R
 import com.zeroheat.lolandroll.api.API2List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
-import com.zeroheat.lolandroll.datas.*
-import com.zeroheat.lolandroll.recyclerview.*
+import com.zeroheat.lolandroll.datas.LeagueResponse
+import com.zeroheat.lolandroll.datas.MatchDetailData
+import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.recyclerview.code
 import com.zeroheat.lolandroll.utils.RuneJsonData
 import com.zeroheat.lolandroll.utils.SpellDataUtil
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 //lateinit var SpellBasic: SpellBasicData
 //lateinit var SpellBasicImage: SpellBasicImageData
@@ -47,6 +44,7 @@ class SearchUserrRecyclerAdapter(
         val txtUserName = itemView.findViewById<TextView>(R.id.txtUserName)
         val txtUserLevel = itemView.findViewById<TextView>(R.id.txtUserLevel)
         val imgChamp = itemView.findViewById<ImageView>(R.id.imgChamp)
+//        val mainImage = itemView.findViewById<LinearLayout>(R.id.mainImage)
 
 
         fun bind(data: SummonerResponse) {
@@ -56,7 +54,15 @@ class SearchUserrRecyclerAdapter(
 
         Glide.with(mContext).load("https://ddragon.leagueoflegends.com/cdn/12.5.1/img/profileicon/${data.profileIconId}.png").into(imgChamp)
 
+//            val db = FirebaseDatabase.getInstance("https://lolandroll-543b4-default-rtdb.firebaseio.com/")
+//            val data = db.getReference("Champion").child("0").key.toString()
+//
+//            Log.d("12", data )
+//                    val random = Random()
+//                    val num = random.nextInt(4)
 
+//            val a= "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_${num}.jpg"
+//            Glide.with(mContext).load().into(mainImage)
         }
 
 
