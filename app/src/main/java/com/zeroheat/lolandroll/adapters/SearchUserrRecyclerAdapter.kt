@@ -205,11 +205,52 @@ class SearchUserrRecyclerAdapter(
 
                             val runeInfoObj = runeJsonArr.getJSONObject(i)
                             Log.d("룬정보", runeInfoObj.toString())
+
+                            val runeId = runeInfoObj.getInt("id")
+
+                            if (gamer.perks.styles[0].style == runeId) {
+//                                메인룬과 같은 타입은 찾음.
+//                                이 내부의 세부 룬을 돌면서, 실제 주 룬이 뭔지 찾아야함.
+
+                                val slotsArr = runeInfoObj.getJSONArray("slots")
+
+//                                감전/칼날비 등 메인 룬 라인만 보면 될듯
+                                val mainSlotObj = slotsArr.getJSONObject(0)
+
+                                val runesArr = mainSlotObj.getJSONArray("runes")
+
+                                for (j in 0 until runesArr.length()) {
+
+                                    val runeObj = runesArr.getJSONObject(j)
+                                    val mainRuneId = runeObj.getInt("id")
+
+                                    if (gamer.perks.styles[0].selections[0].perk == mainRuneId) {
+                                        val mainRuneIcon = runeObj.getString("icon")
+                                        val mainRuneUrl = "https://ddragon.leagueoflegends.com/cdn/img/${mainRuneIcon}"
+
+                                        Glide.with(mContext).load(mainRuneUrl).into(imgUsedRun1)
+                                    }
+
+                                }
+
+
+                            }
+
+                            if (gamer.perks.styles[1].style == runeId) {
+
+//                                서브룬과 같은 타입을 찾음
+                                val subRuneIcon = runeInfoObj.getString("icon")
+                                val subRuneURL = "https://ddragon.leagueoflegends.com/cdn/img/${subRuneIcon}"
+
+                                Glide.with(mContext).load(subRuneURL).into(imgUsedRun2)
+
+                            }
+
                         }
 
 
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
-                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
+//                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
+//                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
 
 
 
