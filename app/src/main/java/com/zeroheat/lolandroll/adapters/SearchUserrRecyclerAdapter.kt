@@ -1,11 +1,18 @@
 package com.zeroheat.lolandroll.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.text.Layout
+import android.text.style.BackgroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageSwitcher
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -96,8 +103,11 @@ class SearchUserrRecyclerAdapter(
             val imgItem5 = itemView.findViewById<ImageView>(R.id.imgItem5)
             val imgItem6 = itemView.findViewById<ImageView>(R.id.imgItem6)
             val imgItemWard = itemView.findViewById<ImageView>(R.id.imgItemWard)
+            val linearColor = itemView.findViewById<LinearLayout>(R.id.linearColor)
 
 
+
+            @SuppressLint("ResourceAsColor")
             fun bind(data: MatchDetailData) {
 
 //                게임 모드
@@ -175,8 +185,22 @@ class SearchUserrRecyclerAdapter(
 //                      승/패 적어주는 textview
                         if(gamer.win == true){
                             txtWin.text = "승"
+                            linearColor.setBackgroundColor(Color.parseColor("#3A6BF6"))
                         }else{
-                            txtWin.text = "패"}
+                            txtWin.text = "패"
+                            linearColor.setBackgroundColor(Color.parseColor("#E24C4D"))
+                        }
+
+//                      이겻을때 블루 졋을때 레드
+//                        if(txtWin.text == "승"){
+//
+//                        }else{
+//
+//                        }
+
+
+
+
 
 //                        사용한 챔피언 이미지
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/${gamer.championName}.png").into(imgUsedChamp)
@@ -249,9 +273,6 @@ class SearchUserrRecyclerAdapter(
                         }
 
 
-//                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
-//                        Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
-
 
 
 //                        사용한 템1 이미지
@@ -305,6 +326,8 @@ class SearchUserrRecyclerAdapter(
                         else {
                             Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItemWard)
                         }
+
+
 
 
 
