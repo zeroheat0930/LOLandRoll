@@ -14,6 +14,7 @@ import com.zeroheat.lolandroll.api.API2List
 import com.zeroheat.lolandroll.api.AsiaServerAPI
 import com.zeroheat.lolandroll.datas.*
 import com.zeroheat.lolandroll.recyclerview.*
+import com.zeroheat.lolandroll.utils.RuneJsonData
 import com.zeroheat.lolandroll.utils.SpellDataUtil
 import java.text.SimpleDateFormat
 import java.util.*
@@ -197,8 +198,14 @@ class SearchUserrRecyclerAdapter(
                         Log.d("item0", gamer.perks.styles[0].selections[0].perk.toString())
                         Log.d("item0", gamer.perks.styles[1].style.toString())
 
-                        Log.d("213", g)
 
+                        val runeJsonArr = RuneJsonData.getRunesJsonArray(mContext)
+
+                        for (i in  0 until  runeJsonArr.length()) {
+
+                            val runeInfoObj = runeJsonArr.getJSONObject(i)
+                            Log.d("룬정보", runeInfoObj.toString())
+                        }
 
 
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
