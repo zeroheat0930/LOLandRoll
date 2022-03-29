@@ -1,9 +1,6 @@
 package com.zeroheat.lolandroll.api
 
-import com.zeroheat.lolandroll.datas.CdataResponse
-import com.zeroheat.lolandroll.datas.ItemResponse
-import com.zeroheat.lolandroll.datas.PdataResponse
-import com.zeroheat.lolandroll.datas.SdataResponse
+import com.zeroheat.lolandroll.datas.*
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -20,4 +17,7 @@ interface API2List {
 
     @GET("12.5.1/data/ko_KR/profileicon.json")
     fun profileIcon() : Call<PdataResponse>
+
+    @GET("12.5.1/data/en_US/runesReforged.json")
+    fun runIcon() : Call<List<RdataResponse>>
 }

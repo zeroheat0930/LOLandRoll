@@ -192,6 +192,14 @@ class SearchUserrRecyclerAdapter(
 
 
 //                        사용한 룬 이미지
+                        val imgRunUrl = "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/${gamer.perks.styles[0].style}_Domination.png"
+                        Log.d("item0", gamer.perks.styles[0].style.toString())
+                        Log.d("item0", gamer.perks.styles[0].selections[0].perk.toString())
+                        Log.d("item0", gamer.perks.styles[1].style.toString())
+
+
+
+
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun1)
                         Glide.with(mContext).load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item0}.png").into(imgUsedRun2)
 
