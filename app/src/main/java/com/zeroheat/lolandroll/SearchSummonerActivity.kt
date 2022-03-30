@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.zeroheat.lolandroll.databinding.ActivitySearchSummonerBinding
 import com.zeroheat.lolandroll.datas.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,7 +46,7 @@ class SearchSummonerActivity : BaseActivity() {
             //          소환사 이름대면 검색결과가 나옴.
             apiList.getsummoner(
                 inputSummonerName,
-                "RGAPI-013563f9-0770-4fbf-9152-a458e1172f99").enqueue(object :Callback<SummonerResponse>{
+                "RGAPI-8ffec796-fc80-4c91-875a-491d53aeb79a").enqueue(object :Callback<SummonerResponse>{
                 override fun onResponse(
                     call: Call<SummonerResponse>,
                     response: Response<SummonerResponse>
@@ -61,6 +62,9 @@ class SearchSummonerActivity : BaseActivity() {
 
                     }
                     else{
+
+                        val jsonObj = JSONObject(response.errorBody()!!.string())
+                        Log.d("검색실패", jsonObj.toString())
                         Toast.makeText(mContext,"등록되지 않은 소환사 입니다.", Toast.LENGTH_LONG).show()
                     }
                 }
