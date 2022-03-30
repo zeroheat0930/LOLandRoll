@@ -340,7 +340,7 @@ class SearchUserrRecyclerAdapter(
                                 .into(imgItem1)
                         } else {
 //                            기본이미지
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem1)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem1)
                         }
 //                        사용한 템2 이미지
                         if (gamer.item1 != 0) {
@@ -348,7 +348,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item1}.png")
                                 .into(imgItem2)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem2)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem2)
                         }
 //                        사용한 템3 이미지
                         if (gamer.item2 != 0) {
@@ -356,7 +356,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item2}.png")
                                 .into(imgItem3)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem3)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem3)
                         }
 //                        사용한 템4 이미지
                         if (gamer.item3 != 0) {
@@ -364,7 +364,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item3}.png")
                                 .into(imgItem4)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem4)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem4)
                         }
 //                        사용한 템5 이미지
                         if (gamer.item4 != 0) {
@@ -372,7 +372,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item4}.png")
                                 .into(imgItem5)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem5)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem5)
                         }
 //                        사용한 템6 이미지
                         if (gamer.item5 != 0) {
@@ -380,7 +380,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item5}.png")
                                 .into(imgItem6)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItem6)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItem6)
                         }
 //                        사용한 와드 이미지
                         if (gamer.item6 != 0) {
@@ -388,7 +388,7 @@ class SearchUserrRecyclerAdapter(
                                 .load("http://ddragon.leagueoflegends.com/cdn/12.5.1/img/item/${gamer.item6}.png")
                                 .into(imgItemWard)
                         } else {
-                            Glide.with(mContext).load(R.mipmap.ic_launcher).into(imgItemWard)
+                            Glide.with(mContext).load(R.drawable.opggitem).into(imgItemWard)
                         }
 
 
