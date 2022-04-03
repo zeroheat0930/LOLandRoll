@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.zeroheat.lolandroll.databinding.ActivitySearchTftSummonerBinding
 import com.zeroheat.lolandroll.datas.SummonerResponse
+import com.zeroheat.lolandroll.datas.TFTSummonerResponse
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,13 +41,13 @@ class SearchTftSummonerActivity : BaseActivity() {
             var inputSummonerName = binding.edtSearch.text.toString()
 
             //          소환사 이름대면 검색결과가 나옴.
-            apiList.getsummoner(
+            apiListTFT.getTFTsummoner(
                 inputSummonerName,
                 "RGAPI-19328204-8ca1-451d-9672-44aa5dba42ed").enqueue(object :
-                Callback<SummonerResponse> {
+                Callback<TFTSummonerResponse> {
                 override fun onResponse(
-                    call: Call<SummonerResponse>,
-                    response: Response<SummonerResponse>
+                    call: Call<TFTSummonerResponse>,
+                    response: Response<TFTSummonerResponse>
                 ) {
                     if (response.isSuccessful){
                         val br = response.body()!!
@@ -66,7 +67,7 @@ class SearchTftSummonerActivity : BaseActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<SummonerResponse>, t: Throwable) {
+                override fun onFailure(call: Call<TFTSummonerResponse>, t: Throwable) {
 
                 }
             })

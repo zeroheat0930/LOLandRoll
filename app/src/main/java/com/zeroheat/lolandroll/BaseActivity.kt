@@ -16,6 +16,7 @@ abstract class BaseActivity : AppCompatActivity(){
     lateinit var apiList: APIList
     lateinit var apiList2: API2List
     lateinit var apiList3: API3List
+    lateinit var apiListTFT: APIListTFT
 
     lateinit var txtTitle: TextView
     lateinit var btnAdd: ImageView
@@ -30,11 +31,14 @@ abstract class BaseActivity : AppCompatActivity(){
         val retrofit = ServerAPI1.getRetrofit(mContext)
         apiList = retrofit.create(APIList::class.java)
 
-        val retrofit2 = ServerAPI2.getRetrofit(mContext)
-        apiList2 = retrofit2.create(API2List::class.java)
+        val retrofit1 = ServerAPI2.getRetrofit(mContext)
+        apiList2 = retrofit1.create(API2List::class.java)
+
+        val retrofit2 = AsiaServerAPI.getRetrofit(mContext)
+        apiList3 = retrofit2.create(API3List::class.java)
 
         val retrofit3 = AsiaServerAPI.getRetrofit(mContext)
-        apiList3 = retrofit3.create(API3List::class.java)
+        apiListTFT = retrofit3.create(APIListTFT::class.java)
 
         supportActionBar?.let {
             setCustomActionBar()
