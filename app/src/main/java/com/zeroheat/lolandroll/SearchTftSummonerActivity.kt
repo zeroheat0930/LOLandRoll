@@ -43,7 +43,7 @@ class SearchTftSummonerActivity : BaseActivity() {
             //          소환사 이름대면 검색결과가 나옴.
             apiListTFT.getTFTsummoner(
                 inputSummonerName,
-                "RGAPI-19328204-8ca1-451d-9672-44aa5dba42ed").enqueue(object :
+                "RGAPI-f1f932e8-b712-42c5-a75b-69d36136a2df").enqueue(object :
                 Callback<TFTSummonerResponse> {
                 override fun onResponse(
                     call: Call<TFTSummonerResponse>,

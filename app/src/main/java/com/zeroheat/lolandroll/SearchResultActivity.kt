@@ -67,7 +67,7 @@ class SearchResultActivity : BaseActivity() {
 //        json파싱만 사용해서 데이터 테이블에 넣어보자
         apiList.getLeague(
             summonerInfo.id,
-            "RGAPI-19328204-8ca1-451d-9672-44aa5dba42ed"
+            "RGAPI-f1f932e8-b712-42c5-a75b-69d36136a2df"
         ).enqueue(object : Callback<List<LeagueResponse>> {
             override fun onResponse(
                 call: Call<List<LeagueResponse>>,
@@ -101,7 +101,7 @@ class SearchResultActivity : BaseActivity() {
         apiList3.getMatch(
             summonerInfo.puuid,
             "30",
-            "RGAPI-19328204-8ca1-451d-9672-44aa5dba42ed"
+            "RGAPI-f1f932e8-b712-42c5-a75b-69d36136a2df"
         )
             .enqueue(object : Callback<List<String>> {
                 override fun onResponse(
@@ -115,7 +115,7 @@ class SearchResultActivity : BaseActivity() {
 
                         apiList3.getMatchDetail(
                             matchId,
-                            "RGAPI-19328204-8ca1-451d-9672-44aa5dba42ed"
+                            "RGAPI-f1f932e8-b712-42c5-a75b-69d36136a2df"
                         ).enqueue(object :
                             Callback<MatchDetailData> {
                             override fun onResponse(
